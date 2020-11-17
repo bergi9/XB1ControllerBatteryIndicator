@@ -17,6 +17,13 @@ using Microsoft.WindowsAPICodePack.Shell.PropertySystem;
 using XB1ControllerBatteryIndicator.Localization;
 using XB1ControllerBatteryIndicator.Properties;
 using System.Security.Principal;
+using System.Threading.Tasks;
+using System.Timers;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
+using System.Windows.Media;
+using System.Windows.Threading;
 using Microsoft.Win32;
 
 namespace XB1ControllerBatteryIndicator
@@ -34,6 +41,14 @@ namespace XB1ControllerBatteryIndicator
 
         private SoundPlayer _soundPlayer;
 
+        private readonly Controller[] _controllers = new[]
+        {
+	        new Controller(UserIndex.One), new Controller(UserIndex.Two), new Controller(UserIndex.Three),
+	        new Controller(UserIndex.Four)
+        };
+
+        private readonly IDictionary<Controller, Popup> _popups = new Dictionary<Controller, Popup>();
+
         public SystemTrayViewModel()
         {
             GetAvailableLanguages();
@@ -49,6 +64,12 @@ namespace XB1ControllerBatteryIndicator
             Thread th = new Thread(RefreshControllerState);
             th.IsBackground = true;
             th.Start();
+
+            var timer = new System.Timers.Timer();
+            timer.AutoReset = true;
+            timer.Interval = 50;
+            timer.Elapsed += (sender, args) => PollGuideButton();
+            timer.Start();
         }
 
         public string ActiveIcon
@@ -71,19 +92,13 @@ namespace XB1ControllerBatteryIndicator
 
             while(true)
             {
-                //Initialize controllers
-                var controllers = new[]
-                {
-                    new Controller(UserIndex.One), new Controller(UserIndex.Two), new Controller(UserIndex.Three),
-                    new Controller(UserIndex.Four)
-                };
-                //Check if at least one is present
-                _controller = controllers.FirstOrDefault(selectControler => selectControler.IsConnected);
+	            //Check if at least one is present
+                _controller = _controllers.FirstOrDefault(selectControler => selectControler.IsConnected);
 
                 if (_controller != null)
                 {
                     //cycle through all recognized controllers
-                    foreach (var currentController in controllers)
+                    foreach (var currentController in _controllers)
                     {
                         var controllerIndexCaption = GetControllerIndexCaption(currentController.UserIndex);
                         if (currentController.IsConnected)
@@ -355,6 +370,82 @@ namespace XB1ControllerBatteryIndicator
 
                 return registryValue > 0 ? "-black" : "";
             }
+        }
+
+        private void PollGuideButton()
+        {
+	        foreach (var controller in _controllers.Where(controller => controller.IsConnected))
+	        {
+		        if (XInputWrapper.IsGuidePressed(controller.UserIndex))
+		        {
+			        ShowPopup(controller);
+		        }
+	        }
+        }
+
+        public void ShowPopup(Controller controller)
+        {
+	        var batteryInfo = controller.GetBatteryInformation(BatteryDeviceType.Gamepad);
+	        if (batteryInfo.BatteryType != BatteryType.Wired)
+	        {
+		        var message = GetPopupMessage(controller, batteryInfo);
+		        OnUIThread(() => ShowPopup(controller, message));
+	        }
+        }
+
+        private void ShowPopup(Controller controller, string message)
+        {
+	        Popup popup;
+	        if (!_popups.TryGetValue(controller, out popup))
+	        {
+                popup = CreatePopup();
+                _popups.Add(controller, popup);
+	        }
+
+            if (popup.IsOpen)
+                return;
+
+            ((TextBlock) ((Border) popup.Child).Child).Text = message;
+
+            popup.IsOpen = true;
+        }
+
+        private Popup CreatePopup()
+        {
+	        var popup = new Popup();
+	        popup.Width = 400;
+	        popup.Height = 30;
+	        popup.Placement = PlacementMode.AbsolutePoint;
+	        popup.PlacementRectangle = new Rect(new Point(10, 10), new Size(popup.Width, popup.Height));
+	        popup.StaysOpen = true;
+	        popup.AllowsTransparency = true;
+	        popup.PopupAnimation = PopupAnimation.Fade;
+	        popup.Child = new Border()
+	        {
+		        Background = Brushes.White, BorderThickness = new Thickness(2), BorderBrush = Brushes.Black,
+		        Child = new TextBlock()
+			        {HorizontalAlignment = HorizontalAlignment.Center, VerticalAlignment = VerticalAlignment.Center}
+	        };
+	        popup.Opened += (sender, args) =>
+	        {
+		        DispatcherTimer time = new DispatcherTimer();
+		        time.Interval = TimeSpan.FromSeconds(3);
+		        time.Start();
+		        time.Tick += (sender1, args1) =>
+		        {
+			        ((Popup)sender).IsOpen = false;
+			        time.Stop();
+		        };
+	        };
+
+	        return popup;
+        }
+
+        private string GetPopupMessage(Controller controller, BatteryInformation batteryInformation)
+        {
+	        var controllerIndexCaption = GetControllerIndexCaption(controller.UserIndex);
+	        var batteryLevelCaption = GetBatteryLevelCaption(batteryInformation.BatteryLevel);
+            return string.Format(Strings.ToolTip_Wireless, controllerIndexCaption, batteryLevelCaption);
         }
     }
 }
