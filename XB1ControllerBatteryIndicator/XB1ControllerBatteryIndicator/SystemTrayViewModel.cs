@@ -25,427 +25,406 @@ using System.Windows.Controls.Primitives;
 using System.Windows.Media;
 using System.Windows.Threading;
 using Microsoft.Win32;
+using XB1ControllerBatteryIndicator.BatteryPopup;
 
 namespace XB1ControllerBatteryIndicator
 {
-    public class SystemTrayViewModel : Caliburn.Micro.Screen
-    {
-        private string _activeIcon;
-        private Controller _controller;
-        private string _tooltipText;
-        private const string APP_ID = "NiyaShy.XB1ControllerBatteryIndicator";
-        private bool[] toast_shown = new bool[5];
-        private Dictionary<string, int> numdict = new Dictionary<string, int>();
-        private const string ThemeRegKeyPath = @"Software\Microsoft\Windows\CurrentVersion\Themes\Personalize";
-        private const string ThemeRegValueName = "SystemUsesLightTheme";
+	public class SystemTrayViewModel : Caliburn.Micro.Screen
+	{
+		private string _activeIcon;
+		private Controller _controller;
+		private string _tooltipText;
+		private const string APP_ID = "NiyaShy.XB1ControllerBatteryIndicator";
+		private bool[] toast_shown = new bool[5];
+		private Dictionary<string, int> numdict = new Dictionary<string, int>();
+		private const string ThemeRegKeyPath = @"Software\Microsoft\Windows\CurrentVersion\Themes\Personalize";
+		private const string ThemeRegValueName = "SystemUsesLightTheme";
 
-        private SoundPlayer _soundPlayer;
+		private SoundPlayer _soundPlayer;
 
-        private readonly Controller[] _controllers = new[]
-        {
-	        new Controller(UserIndex.One), new Controller(UserIndex.Two), new Controller(UserIndex.Three),
-	        new Controller(UserIndex.Four)
-        };
+		private readonly Controller[] _controllers = new[]
+		{
+			new Controller(UserIndex.One), new Controller(UserIndex.Two), new Controller(UserIndex.Three),
+			new Controller(UserIndex.Four)
+		};
 
-        private readonly IDictionary<Controller, Popup> _popups = new Dictionary<Controller, Popup>();
+		private readonly IDictionary<Controller, Popup> _popups = new Dictionary<Controller, Popup>();
 
-        public SystemTrayViewModel()
-        {
-            GetAvailableLanguages();
-            TranslationManager.CurrentLanguageChangedEvent += (sender, args) => GetAvailableLanguages();
-            UpdateNotificationSound();
+		public SystemTrayViewModel()
+		{
+			GetAvailableLanguages();
+			TranslationManager.CurrentLanguageChangedEvent += (sender, args) => GetAvailableLanguages();
+			UpdateNotificationSound();
 
-            ActiveIcon = $"Resources/battery_unknown{LightTheme()}.ico";
-            numdict["One"] = 1;
-            numdict["Two"] = 2;
-            numdict["Three"] = 3;
-            numdict["Four"] = 4;
-            TryCreateShortcut();
-            Thread th = new Thread(RefreshControllerState);
-            th.IsBackground = true;
-            th.Start();
+			ActiveIcon = $"Resources/battery_unknown{LightTheme()}.ico";
+			numdict["One"] = 1;
+			numdict["Two"] = 2;
+			numdict["Three"] = 3;
+			numdict["Four"] = 4;
+			TryCreateShortcut();
+			Thread th = new Thread(RefreshControllerState);
+			th.IsBackground = true;
+			th.Start();
 
-            var timer = new System.Timers.Timer();
-            timer.AutoReset = true;
-            timer.Interval = 50;
-            timer.Elapsed += (sender, args) => PollGuideButton();
-            timer.Start();
-        }
+			var timer = new System.Timers.Timer();
+			timer.AutoReset = true;
+			timer.Interval = 50;
+			timer.Elapsed += (sender, args) => PollGuideButton();
+			timer.Start();
+		}
 
-        public string ActiveIcon
-        {
-            get { return _activeIcon; }
-            set { Set(ref _activeIcon, value); }
-        }
+		public string ActiveIcon
+		{
+			get { return _activeIcon; }
+			set { Set(ref _activeIcon, value); }
+		}
 
-        public string TooltipText
-        {
-            get { return _tooltipText; }
-            set { Set(ref _tooltipText, value); }
-        }
+		public string TooltipText
+		{
+			get { return _tooltipText; }
+			set { Set(ref _tooltipText, value); }
+		}
 
-        public ObservableCollection<CultureInfo> AvailableLanguages { get; } = new ObservableCollection<CultureInfo>();
+		public ObservableCollection<CultureInfo> AvailableLanguages { get; } = new ObservableCollection<CultureInfo>();
 
-        private void RefreshControllerState()
-        {
-            bool lowBatteryWarningSoundPlayed = false;
+		private void RefreshControllerState()
+		{
+			bool lowBatteryWarningSoundPlayed = false;
 
-            while(true)
-            {
-	            //Check if at least one is present
-                _controller = _controllers.FirstOrDefault(selectControler => selectControler.IsConnected);
+			while (true)
+			{
+				//Check if at least one is present
+				_controller = _controllers.FirstOrDefault(selectControler => selectControler.IsConnected);
 
-                if (_controller != null)
-                {
-                    //cycle through all recognized controllers
-                    foreach (var currentController in _controllers)
-                    {
-                        var controllerIndexCaption = GetControllerIndexCaption(currentController.UserIndex);
-                        if (currentController.IsConnected)
-                        {
-                            var batteryInfo = currentController.GetBatteryInformation(BatteryDeviceType.Gamepad);
-                            //check if toast was already triggered and battery is no longer empty...
-                            if (batteryInfo.BatteryLevel != BatteryLevel.Empty)
-                            {
-                                if (toast_shown[numdict[$"{currentController.UserIndex}"]] == true)
-                                {
-                                    //...reset the notification
-                                    toast_shown[numdict[$"{currentController.UserIndex}"]] = false;
-                                    ToastNotificationManager.History.Remove($"Controller{currentController.UserIndex}", "ControllerToast", APP_ID);
-                                }
-                            }
-                            //wired
-                            if (batteryInfo.BatteryType == BatteryType.Wired)
-                            {
-                                TooltipText = string.Format(Strings.ToolTip_Wired, controllerIndexCaption);
-                                ActiveIcon = $"Resources/battery_wired_{currentController.UserIndex.ToString().ToLower() + LightTheme()}.ico";
-                            }
-                            //"disconnected", a controller that was detected but hasn't sent battery data yet has this state
-                            else if (batteryInfo.BatteryType == BatteryType.Disconnected)
-                            {
-                                TooltipText = string.Format(Strings.ToolTip_WaitingForData, controllerIndexCaption);
-                                ActiveIcon = $"Resources/battery_disconnected_{currentController.UserIndex.ToString().ToLower() + LightTheme()}.ico";
-                            }
-                            //this state should never happen
-                            else if (batteryInfo.BatteryType == BatteryType.Unknown)
-                            {
-                                TooltipText = string.Format(Strings.ToolTip_Unknown, controllerIndexCaption);
-                                ActiveIcon = $"Resources/battery_disconnected_{currentController.UserIndex.ToString().ToLower() + LightTheme()}.ico";
-                            }
-                            //a battery level was detected
-                            else
-                            {
-                                var batteryLevelCaption = GetBatteryLevelCaption(batteryInfo.BatteryLevel);
-                                TooltipText = string.Format(Strings.ToolTip_Wireless, controllerIndexCaption, batteryLevelCaption);
-                                ActiveIcon = $"Resources/battery_{batteryInfo.BatteryLevel.ToString().ToLower()}_{currentController.UserIndex.ToString().ToLower() + LightTheme()}.ico";
-                                //when "empty" state is detected...
-                                if (batteryInfo.BatteryLevel == BatteryLevel.Empty)
-                                {
-                                    //check if toast (notification) for current controller was already triggered
-                                    if (toast_shown[numdict[$"{currentController.UserIndex}"]] == false)
-                                    {
-                                        //if not, trigger it
-                                        toast_shown[numdict[$"{currentController.UserIndex}"]] = true;
-                                        ShowToast(currentController.UserIndex);
-                                    }
-                                    //check if notification sound is enabled
-                                    if (Settings.Default.LowBatteryWarningSound_Enabled)
-                                    {
-                                        if (Settings.Default.LowBatteryWarningSound_Loop_Enabled || !lowBatteryWarningSoundPlayed)
-                                        {
-                                            //Necessary to avoid crashing if the .wav file is missing
-                                            try
-                                            {
-                                                _soundPlayer?.Play();
-                                            }
-                                            catch (Exception ex)
-                                            {
-                                                Debug.WriteLine(ex);
-                                            }
-                                            lowBatteryWarningSoundPlayed = true;
-                                        }
-                                    }
-                                }
-                            }
-                            Thread.Sleep(5000);
-                        }
-                    }
-                }
-                else
-                {
-                    TooltipText = Strings.ToolTip_NoController;
-                    ActiveIcon = $"Resources/battery_unknown{LightTheme()}.ico";
-                }
-                Thread.Sleep(1000);
-            }
-        }
+				if (_controller != null)
+				{
+					//cycle through all recognized controllers
+					foreach (var currentController in _controllers)
+					{
+						var controllerIndexCaption = GetControllerIndexCaption(currentController.UserIndex);
+						if (currentController.IsConnected)
+						{
+							var batteryInfo = currentController.GetBatteryInformation(BatteryDeviceType.Gamepad);
+							//check if toast was already triggered and battery is no longer empty...
+							if (batteryInfo.BatteryLevel != BatteryLevel.Empty)
+							{
+								if (toast_shown[numdict[$"{currentController.UserIndex}"]] == true)
+								{
+									//...reset the notification
+									toast_shown[numdict[$"{currentController.UserIndex}"]] = false;
+									ToastNotificationManager.History.Remove($"Controller{currentController.UserIndex}", "ControllerToast", APP_ID);
+								}
+							}
+							//wired
+							if (batteryInfo.BatteryType == BatteryType.Wired)
+							{
+								TooltipText = string.Format(Strings.ToolTip_Wired, controllerIndexCaption);
+								ActiveIcon = $"Resources/battery_wired_{currentController.UserIndex.ToString().ToLower() + LightTheme()}.ico";
+							}
+							//"disconnected", a controller that was detected but hasn't sent battery data yet has this state
+							else if (batteryInfo.BatteryType == BatteryType.Disconnected)
+							{
+								TooltipText = string.Format(Strings.ToolTip_WaitingForData, controllerIndexCaption);
+								ActiveIcon = $"Resources/battery_disconnected_{currentController.UserIndex.ToString().ToLower() + LightTheme()}.ico";
+							}
+							//this state should never happen
+							else if (batteryInfo.BatteryType == BatteryType.Unknown)
+							{
+								TooltipText = string.Format(Strings.ToolTip_Unknown, controllerIndexCaption);
+								ActiveIcon = $"Resources/battery_disconnected_{currentController.UserIndex.ToString().ToLower() + LightTheme()}.ico";
+							}
+							//a battery level was detected
+							else
+							{
+								var batteryLevelCaption = GetBatteryLevelCaption(batteryInfo.BatteryLevel);
+								TooltipText = string.Format(Strings.ToolTip_Wireless, controllerIndexCaption, batteryLevelCaption);
+								ActiveIcon = $"Resources/battery_{batteryInfo.BatteryLevel.ToString().ToLower()}_{currentController.UserIndex.ToString().ToLower() + LightTheme()}.ico";
+								//when "empty" state is detected...
+								if (batteryInfo.BatteryLevel == BatteryLevel.Empty)
+								{
+									//check if toast (notification) for current controller was already triggered
+									if (toast_shown[numdict[$"{currentController.UserIndex}"]] == false)
+									{
+										//if not, trigger it
+										toast_shown[numdict[$"{currentController.UserIndex}"]] = true;
+										ShowToast(currentController.UserIndex);
+									}
+									//check if notification sound is enabled
+									if (Settings.Default.LowBatteryWarningSound_Enabled)
+									{
+										if (Settings.Default.LowBatteryWarningSound_Loop_Enabled || !lowBatteryWarningSoundPlayed)
+										{
+											//Necessary to avoid crashing if the .wav file is missing
+											try
+											{
+												_soundPlayer?.Play();
+											}
+											catch (Exception ex)
+											{
+												Debug.WriteLine(ex);
+											}
+											lowBatteryWarningSoundPlayed = true;
+										}
+									}
+								}
+							}
+							Thread.Sleep(5000);
+						}
+					}
+				}
+				else
+				{
+					TooltipText = Strings.ToolTip_NoController;
+					ActiveIcon = $"Resources/battery_unknown{LightTheme()}.ico";
+				}
+				Thread.Sleep(1000);
+			}
+		}
 
-        //try to create a start menu shortcut (required for sending toasts)
-        private bool TryCreateShortcut()
-        {
-            String shortcutPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\Microsoft\\Windows\\Start Menu\\Programs\\XB1ControllerBatteryIndicator.lnk";
-            if (!File.Exists(shortcutPath))
-            {
-                InstallShortcut(shortcutPath);
-                return true;
-            }
-            return false;
-        }
-        //create the shortcut
-        private void InstallShortcut(String shortcutPath)
-        {
-            // Find the path to the current executable 
-            String exePath = Process.GetCurrentProcess().MainModule.FileName;
-            IShellLinkW newShortcut = (IShellLinkW)new CShellLink();
+		//try to create a start menu shortcut (required for sending toasts)
+		private bool TryCreateShortcut()
+		{
+			String shortcutPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\Microsoft\\Windows\\Start Menu\\Programs\\XB1ControllerBatteryIndicator.lnk";
+			if (!File.Exists(shortcutPath))
+			{
+				InstallShortcut(shortcutPath);
+				return true;
+			}
+			return false;
+		}
+		//create the shortcut
+		private void InstallShortcut(String shortcutPath)
+		{
+			// Find the path to the current executable 
+			String exePath = Process.GetCurrentProcess().MainModule.FileName;
+			IShellLinkW newShortcut = (IShellLinkW)new CShellLink();
 
-            // Create a shortcut to the exe 
-            ErrorHelper.VerifySucceeded(newShortcut.SetPath(exePath));
-            ErrorHelper.VerifySucceeded(newShortcut.SetArguments(""));
+			// Create a shortcut to the exe 
+			ErrorHelper.VerifySucceeded(newShortcut.SetPath(exePath));
+			ErrorHelper.VerifySucceeded(newShortcut.SetArguments(""));
 
-            // Open the shortcut property store, set the AppUserModelId property 
-            IPropertyStore newShortcutProperties = (IPropertyStore)newShortcut;
+			// Open the shortcut property store, set the AppUserModelId property 
+			IPropertyStore newShortcutProperties = (IPropertyStore)newShortcut;
 
-            using (PropVariant appId = new PropVariant(APP_ID))
-            {
-                ErrorHelper.VerifySucceeded(newShortcutProperties.SetValue(SystemProperties.System.AppUserModel.ID, appId));
-                ErrorHelper.VerifySucceeded(newShortcutProperties.Commit());
-            }
+			using (PropVariant appId = new PropVariant(APP_ID))
+			{
+				ErrorHelper.VerifySucceeded(newShortcutProperties.SetValue(SystemProperties.System.AppUserModel.ID, appId));
+				ErrorHelper.VerifySucceeded(newShortcutProperties.Commit());
+			}
 
-            // Commit the shortcut to disk 
-            IPersistFile newShortcutSave = (IPersistFile)newShortcut;
+			// Commit the shortcut to disk 
+			IPersistFile newShortcutSave = (IPersistFile)newShortcut;
 
-            ErrorHelper.VerifySucceeded(newShortcutSave.Save(shortcutPath, true));
-        }
-        //send a toast
-        private void ShowToast(UserIndex controllerIndex)
-        {
-            int controllerId = numdict[$"{controllerIndex}"];
-            var controllerIndexCaption = GetControllerIndexCaption(controllerIndex);
-            string argsDismiss = $"dismissed";
-            string argsLaunch = $"{controllerId}";
-            //how the content gets arranged
-            string toastVisual =
-                $@"<visual>
+			ErrorHelper.VerifySucceeded(newShortcutSave.Save(shortcutPath, true));
+		}
+		//send a toast
+		private void ShowToast(UserIndex controllerIndex)
+		{
+			int controllerId = numdict[$"{controllerIndex}"];
+			var controllerIndexCaption = GetControllerIndexCaption(controllerIndex);
+			string argsDismiss = $"dismissed";
+			string argsLaunch = $"{controllerId}";
+			//how the content gets arranged
+			string toastVisual =
+				$@"<visual>
                         <binding template='ToastGeneric'>
                             <text>{string.Format(Strings.Toast_Title, controllerIndexCaption)}</text>
                             <text>{string.Format(Strings.Toast_Text, controllerIndexCaption)}</text>
                             <text>{Strings.Toast_Text2}</text>
                         </binding>
                     </visual>";
-            //Button on the toast
-            string toastActions =
-                $@"<actions>
+			//Button on the toast
+			string toastActions =
+				$@"<actions>
                         <action content='{Strings.Toast_Dismiss}' arguments='{argsDismiss}'/>
                    </actions>";
-            //combine content and button
-            string toastXmlString =
-                $@"<toast scenario='reminder' launch='{argsLaunch}'>
+			//combine content and button
+			string toastXmlString =
+				$@"<toast scenario='reminder' launch='{argsLaunch}'>
                         {toastVisual}
                         {toastActions}
                    </toast>";
 
-            XmlDocument toastXml = new XmlDocument();
-            toastXml.LoadXml(toastXmlString);
-            //create the toast
-            var toast = new ToastNotification(toastXml);
-            toast.Activated += ToastActivated;
-            toast.Dismissed += ToastDismissed;
-            toast.Tag = $"Controller{controllerIndex}";
-            toast.Group = "ControllerToast";
-            //..and send it
-            ToastNotificationManager.CreateToastNotifier(APP_ID).Show(toast);
+			XmlDocument toastXml = new XmlDocument();
+			toastXml.LoadXml(toastXmlString);
+			//create the toast
+			var toast = new ToastNotification(toastXml);
+			toast.Activated += ToastActivated;
+			toast.Dismissed += ToastDismissed;
+			toast.Tag = $"Controller{controllerIndex}";
+			toast.Group = "ControllerToast";
+			//..and send it
+			ToastNotificationManager.CreateToastNotifier(APP_ID).Show(toast);
 
-        }
-        //react to click on toast or button
-        private void ToastActivated(ToastNotification sender, object e)
-        {
-            var toastArgs = e as ToastActivatedEventArgs;
-            int controllerId = 0;
-            //if the return value contains a controller ID
-            if (Int32.TryParse(toastArgs.Arguments, out controllerId))
-            {
-                //reset the toast warning (it will trigger again if battery level is still empty)
-                toast_shown[controllerId] = false;
-            }
-            //otherwise, do nothing
-        }
-        private void ToastDismissed(ToastNotification sender, object e)
-        {
-            //do nothing
-        }
+		}
+		//react to click on toast or button
+		private void ToastActivated(ToastNotification sender, object e)
+		{
+			var toastArgs = e as ToastActivatedEventArgs;
+			int controllerId = 0;
+			//if the return value contains a controller ID
+			if (Int32.TryParse(toastArgs.Arguments, out controllerId))
+			{
+				//reset the toast warning (it will trigger again if battery level is still empty)
+				toast_shown[controllerId] = false;
+			}
+			//otherwise, do nothing
+		}
+		private void ToastDismissed(ToastNotification sender, object e)
+		{
+			//do nothing
+		}
 
-        public void ExitApplication()
-        {
-            System.Windows.Application.Current.Shutdown();
-        }
+		public void ExitApplication()
+		{
+			System.Windows.Application.Current.Shutdown();
+		}
 
-        private string GetBatteryLevelCaption(BatteryLevel batteryLevel)
-        {
-            switch (batteryLevel)
-            {
-                case BatteryLevel.Empty:
-                    return Strings.BatteryLevel_Empty;
-                case BatteryLevel.Low:
-                    return Strings.BatteryLevel_Low;
-                case BatteryLevel.Medium:
-                    return Strings.BatteryLevel_Medium;
-                case BatteryLevel.Full:
-                    return Strings.BatteryLevel_Full;
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(batteryLevel), batteryLevel, null);
-            }
-        }
+		private string GetBatteryLevelCaption(BatteryLevel batteryLevel)
+		{
+			switch (batteryLevel)
+			{
+				case BatteryLevel.Empty:
+					return Strings.BatteryLevel_Empty;
+				case BatteryLevel.Low:
+					return Strings.BatteryLevel_Low;
+				case BatteryLevel.Medium:
+					return Strings.BatteryLevel_Medium;
+				case BatteryLevel.Full:
+					return Strings.BatteryLevel_Full;
+				default:
+					throw new ArgumentOutOfRangeException(nameof(batteryLevel), batteryLevel, null);
+			}
+		}
 
-        private string GetControllerIndexCaption(UserIndex index)
-        {
-            switch (index)
-            {
-                case UserIndex.One:
-                    return Strings.ControllerIndex_One;
-                case UserIndex.Two:
-                    return Strings.ControllerIndex_Two;
-                case UserIndex.Three:
-                    return Strings.ControllerIndex_Three;
-                case UserIndex.Four:
-                    return Strings.ControllerIndex_Four;
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(index), index, null);
-            }
-        }
+		private string GetControllerIndexCaption(UserIndex index)
+		{
+			switch (index)
+			{
+				case UserIndex.One:
+					return Strings.ControllerIndex_One;
+				case UserIndex.Two:
+					return Strings.ControllerIndex_Two;
+				case UserIndex.Three:
+					return Strings.ControllerIndex_Three;
+				case UserIndex.Four:
+					return Strings.ControllerIndex_Four;
+				default:
+					throw new ArgumentOutOfRangeException(nameof(index), index, null);
+			}
+		}
 
-        private void GetAvailableLanguages()
-        {
-            AvailableLanguages.Clear();
-            foreach (var language in TranslationManager.AvailableLanguages)
-            {
-                AvailableLanguages.Add(language);
-            }
-        }
+		private void GetAvailableLanguages()
+		{
+			AvailableLanguages.Clear();
+			foreach (var language in TranslationManager.AvailableLanguages)
+			{
+				AvailableLanguages.Add(language);
+			}
+		}
 
-        public void UpdateNotificationSound()
-        {
-            _soundPlayer = File.Exists(Settings.Default.wavFile) ? new SoundPlayer(Settings.Default.wavFile) : null;
-        }
-        public void WatchTheme()
-        {
-            var currentUser = WindowsIdentity.GetCurrent();
-            string query = string.Format(
-                CultureInfo.InvariantCulture,
-                @"SELECT * FROM RegistryValueChangeEvent WHERE Hive = 'HKEY_USERS' AND KeyPath = '{0}\\{1}' AND ValueName = '{2}'",
-                currentUser.User.Value,
-                ThemeRegKeyPath.Replace(@"\", @"\\"),
-                ThemeRegValueName);
+		public void UpdateNotificationSound()
+		{
+			_soundPlayer = File.Exists(Settings.Default.wavFile) ? new SoundPlayer(Settings.Default.wavFile) : null;
+		}
+		public void WatchTheme()
+		{
+			var currentUser = WindowsIdentity.GetCurrent();
+			string query = string.Format(
+				CultureInfo.InvariantCulture,
+				@"SELECT * FROM RegistryValueChangeEvent WHERE Hive = 'HKEY_USERS' AND KeyPath = '{0}\\{1}' AND ValueName = '{2}'",
+				currentUser.User.Value,
+				ThemeRegKeyPath.Replace(@"\", @"\\"),
+				ThemeRegValueName);
 
-            try
-            {
-                var watcher = new ManagementEventWatcher(query);
-                watcher.EventArrived += (sender, args) =>
-                {
-                    LightTheme();
-                    
-                };
+			try
+			{
+				var watcher = new ManagementEventWatcher(query);
+				watcher.EventArrived += (sender, args) =>
+				{
+					LightTheme();
 
-                // Start listening for events
-                watcher.Start();
-            }
-            catch (Exception)
-            {
-                // This can fail on Windows 7
-            }
+				};
 
-            LightTheme();
-        }
+				// Start listening for events
+				watcher.Start();
+			}
+			catch (Exception)
+			{
+				// This can fail on Windows 7
+			}
 
-        private string LightTheme()
-        {
-            using (RegistryKey key = Registry.CurrentUser.OpenSubKey(ThemeRegKeyPath))
-            {
-                object registryValueObject = key?.GetValue(ThemeRegValueName);
-                if (registryValueObject == null)
-                {
-                    return "";
-                }
+			LightTheme();
+		}
 
-                int registryValue = (int)registryValueObject;
+		private string LightTheme()
+		{
+			using (RegistryKey key = Registry.CurrentUser.OpenSubKey(ThemeRegKeyPath))
+			{
+				object registryValueObject = key?.GetValue(ThemeRegValueName);
+				if (registryValueObject == null)
+				{
+					return "";
+				}
 
-                return registryValue > 0 ? "-black" : "";
-            }
-        }
+				int registryValue = (int)registryValueObject;
 
-        private void PollGuideButton()
-        {
-	        foreach (var controller in _controllers.Where(controller => controller.IsConnected))
-	        {
-		        if (XInputWrapper.IsGuidePressed(controller.UserIndex))
-		        {
-			        ShowPopup(controller);
-		        }
-	        }
-        }
+				return registryValue > 0 ? "-black" : "";
+			}
+		}
 
-        public void ShowPopup(Controller controller)
-        {
-	        var batteryInfo = controller.GetBatteryInformation(BatteryDeviceType.Gamepad);
-	        if (batteryInfo.BatteryType != BatteryType.Wired)
-	        {
-		        var message = GetPopupMessage(controller, batteryInfo);
-		        OnUIThread(() => ShowPopup(controller, message));
-	        }
-        }
+		private void PollGuideButton()
+		{
+			foreach (var controller in _controllers.Where(controller => controller.IsConnected))
+			{
+				if (XInputWrapper.IsGuidePressed(controller.UserIndex))
+				{
+					ShowPopup(controller);
+				}
+			}
+		}
 
-        private void ShowPopup(Controller controller, string message)
-        {
-	        Popup popup;
-	        if (!_popups.TryGetValue(controller, out popup))
-	        {
-                popup = CreatePopup();
-                _popups.Add(controller, popup);
-	        }
+		public void ShowPopup(Controller controller)
+		{
+			var batteryInfo = controller.GetBatteryInformation(BatteryDeviceType.Gamepad);
+			if (batteryInfo.BatteryType != BatteryType.Wired)
+			{
+				var message = GetPopupMessage(controller, batteryInfo);
+				OnUIThread(() => ShowPopup(controller, message));
+			}
+		}
 
-            if (popup.IsOpen)
-                return;
+		private void ShowPopup(Controller controller, string message)
+		{
+			Popup popup;
+			if (!_popups.TryGetValue(controller, out popup))
+			{
+				popup = new BatteryLevelPopupView();
+				_popups.Add(controller, popup);
+			}
 
-            ((TextBlock) ((Border) popup.Child).Child).Text = message;
+			if (popup.IsOpen)
+				return;
 
-            popup.IsOpen = true;
-        }
+			var viewModel = new SimpleBatteryLevelPopupViewModel()
+			{
+				DisplayDuration = TimeSpan.FromSeconds(3),
+				Position = new Rect(new Point(10, 10), new Size(400, 30)),
+				CornerRadius = new CornerRadius(15),
+				Background = Brushes.White,
+				BorderColor = Brushes.Black, BorderSize = new Thickness(2),
+				Message = message
+			};
+			popup.DataContext = viewModel;
 
-        private Popup CreatePopup()
-        {
-	        var popup = new Popup();
-	        popup.Width = 400;
-	        popup.Height = 30;
-	        popup.Placement = PlacementMode.AbsolutePoint;
-	        popup.PlacementRectangle = new Rect(new Point(10, 10), new Size(popup.Width, popup.Height));
-	        popup.StaysOpen = true;
-	        popup.AllowsTransparency = true;
-	        popup.PopupAnimation = PopupAnimation.Fade;
-	        popup.Child = new Border()
-	        {
-		        Background = Brushes.White, BorderThickness = new Thickness(2), BorderBrush = Brushes.Black,
-		        Child = new TextBlock()
-			        {HorizontalAlignment = HorizontalAlignment.Center, VerticalAlignment = VerticalAlignment.Center}
-	        };
-	        popup.Opened += (sender, args) =>
-	        {
-		        DispatcherTimer time = new DispatcherTimer();
-		        time.Interval = TimeSpan.FromSeconds(3);
-		        time.Start();
-		        time.Tick += (sender1, args1) =>
-		        {
-			        ((Popup)sender).IsOpen = false;
-			        time.Stop();
-		        };
-	        };
+			popup.IsOpen = true;
+		}
 
-	        return popup;
-        }
-
-        private string GetPopupMessage(Controller controller, BatteryInformation batteryInformation)
-        {
-	        var controllerIndexCaption = GetControllerIndexCaption(controller.UserIndex);
-	        var batteryLevelCaption = GetBatteryLevelCaption(batteryInformation.BatteryLevel);
-            return string.Format(Strings.ToolTip_Wireless, controllerIndexCaption, batteryLevelCaption);
-        }
-    }
+		private string GetPopupMessage(Controller controller, BatteryInformation batteryInformation)
+		{
+			var controllerIndexCaption = GetControllerIndexCaption(controller.UserIndex);
+			var batteryLevelCaption = GetBatteryLevelCaption(batteryInformation.BatteryLevel);
+			return string.Format(Strings.ToolTip_Wireless, controllerIndexCaption, batteryLevelCaption);
+		}
+	}
 }

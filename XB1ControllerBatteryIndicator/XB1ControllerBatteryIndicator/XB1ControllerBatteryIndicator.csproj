@@ -164,6 +164,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="BatteryPopup\BatteryLevelPopupView.xaml.cs">
+      <DependentUpon>BatteryLevelPopupView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="BatteryPopup\SimpleBatteryLevelPopupViewModel.cs" />
+    <Compile Include="BatteryPopup\IBatteryLevelPopupViewModel.cs" />
     <Compile Include="IsCurrentLanguageConverter.cs" />
     <Compile Include="LocalizationExtension.cs" />
     <Compile Include="Localization\Strings.Designer.cs">
@@ -185,6 +190,14 @@
     <Compile Include="TranslationBindingProvider.cs" />
     <Compile Include="TranslationManager.cs" />
     <Compile Include="XInputWrapper.cs" />
+    <Page Include="BatteryPopup\BatteryLevelPopupTemplates.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="BatteryPopup\BatteryLevelPopupView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -520,6 +533,7 @@
     <Resource Include="Resources\battery_wired_three-black.ico" />
     <Resource Include="Resources\battery_wired_two-black.ico" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Fody.6.0.0\build\Fody.targets" Condition="Exists('..\packages\Fody.6.0.0\build\Fody.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
