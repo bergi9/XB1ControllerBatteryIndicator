@@ -20,5 +20,21 @@
     <Setting Name="LowBatteryWarningSound_Loop_Enabled" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
+    <Setting Name="PopupSettings" Type="XB1ControllerBatteryIndicator.BatteryPopup.SimpleBatteryPopupSettings" Scope="User">
+      <Value Profile="(Default)">
+          &lt;SimpleBatteryPopupSettings&gt;
+            &lt;Size&gt;
+              &lt;Width&gt;300&lt;/Width&gt;
+              &lt;Height&gt;60&lt;/Height&gt;
+            &lt;/Size&gt;
+            &lt;X&gt;0.5&lt;/X&gt;
+            &lt;Y&gt;0.8&lt;/Y&gt;
+            &lt;DisplayDuration&gt;0:00:03&lt;/DisplayDuration&gt;
+            &lt;BackgroundColor&gt;#FFA9A9A9&lt;/BackgroundColor&gt;
+            &lt;ForegroundColor&gt;#FFF8F8FF&lt;/ForegroundColor&gt;
+            &lt;FontSize&gt;20&lt;/FontSize&gt;
+          &lt;/SimpleBatteryPopupSettings&gt;
+        </Value>
+    </Setting>
   </Settings>
 </SettingsFile>

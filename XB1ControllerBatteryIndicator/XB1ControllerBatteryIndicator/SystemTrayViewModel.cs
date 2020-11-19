@@ -394,24 +394,24 @@ namespace XB1ControllerBatteryIndicator
 			if (_popup.IsOpen)
 				return;
 
-			var popupSize = new Size(300, 60);
+			var popupSettings = Settings.Default.PopupSettings;
 
 			var displaySize = new Size(SystemParameters.FullPrimaryScreenWidth, SystemParameters.FullPrimaryScreenHeight);
-			var x = (displaySize.Width - popupSize.Width) * 0.5;
-			var y = (displaySize.Height - popupSize.Height) * 0.8;
+			var x = (displaySize.Width - popupSettings.Size.Width) * popupSettings.X;
+			var y = (displaySize.Height - popupSettings.Size.Height) * popupSettings.Y;
 			var location = new Point(x, y);
 
 			var viewModel = new SimpleBatteryLevelPopupViewModel()
 			{
-				DisplayDuration = TimeSpan.FromSeconds(3),
-				Position = new Rect(location, popupSize),
-				CornerRadius = new CornerRadius(30),
-				Background = Brushes.DimGray,
-				ForegroundColor = Brushes.GhostWhite,
+				DisplayDuration = popupSettings.DisplayDuration,
+				Position = new Rect(location, popupSettings.Size),
+				CornerRadius = new CornerRadius(popupSettings.Size.Height / 2),
+				Background = new SolidColorBrush(popupSettings.BackgroundColor),
+				ForegroundColor = new SolidColorBrush(popupSettings.ForegroundColor),
 				BorderSize = new Thickness(2),
 				ControllerName = $"Controller {GetControllerIndexCaption(controller.UserIndex)}",
 				BatteryLevel =  $"Battery Level: {GetBatteryLevelCaption(batteryInformation.BatteryLevel)}",
-				FontSize = 20,
+				FontSize = popupSettings.FontSize,
 			};
 			_popup.DataContext = viewModel;
 

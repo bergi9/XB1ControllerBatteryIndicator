@@ -12,7 +12,7 @@ namespace XB1ControllerBatteryIndicator.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "15.9.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "16.8.1.0")]
     public sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -92,6 +92,31 @@ namespace XB1ControllerBatteryIndicator.Properties {
             }
             set {
                 this["LowBatteryWarningSound_Loop_Enabled"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(@"
+          <SimpleBatteryPopupSettings>
+            <Size>
+              <Width>300</Width>
+              <Height>60</Height>
+            </Size>
+            <X>0.5</X>
+            <Y>0.8</Y>
+            <DisplayDuration>0:00:03</DisplayDuration>
+            <BackgroundColor>#FFA9A9A9</BackgroundColor>
+            <ForegroundColor>#FFF8F8FF</ForegroundColor>
+            <FontSize>20</FontSize>
+          </SimpleBatteryPopupSettings>
+        ")]
+        public global::XB1ControllerBatteryIndicator.BatteryPopup.SimpleBatteryPopupSettings PopupSettings {
+            get {
+                return ((global::XB1ControllerBatteryIndicator.BatteryPopup.SimpleBatteryPopupSettings)(this["PopupSettings"]));
+            }
+            set {
+                this["PopupSettings"] = value;
             }
         }
     }

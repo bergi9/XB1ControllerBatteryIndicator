@@ -169,6 +169,7 @@
     </Compile>
     <Compile Include="BatteryPopup\SimpleBatteryLevelPopupViewModel.cs" />
     <Compile Include="BatteryPopup\IBatteryLevelPopupViewModel.cs" />
+    <Compile Include="BatteryPopup\SimpleBatteryPopupSettings.cs" />
     <Compile Include="IsCurrentLanguageConverter.cs" />
     <Compile Include="LocalizationExtension.cs" />
     <Compile Include="Localization\Strings.Designer.cs">
