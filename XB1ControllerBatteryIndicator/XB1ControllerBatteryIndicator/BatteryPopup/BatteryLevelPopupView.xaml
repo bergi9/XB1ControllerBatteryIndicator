@@ -11,7 +11,8 @@
              StaysOpen="True"
              AllowsTransparency="True"
              PopupAnimation="Fade"
-             PlacementRectangle="{Binding Path=Position}"
+             HorizontalOffset="{Binding Path=Position.Left}"
+             VerticalOffset="{Binding Path=Position.Top}"
              Width="{Binding Path=Position.Width}"
              Height="{Binding Path=Position.Height}">
     <Popup.Style>

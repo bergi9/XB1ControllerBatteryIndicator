@@ -17,13 +17,9 @@ using Microsoft.WindowsAPICodePack.Shell.PropertySystem;
 using XB1ControllerBatteryIndicator.Localization;
 using XB1ControllerBatteryIndicator.Properties;
 using System.Security.Principal;
-using System.Threading.Tasks;
-using System.Timers;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Media;
-using System.Windows.Threading;
 using Microsoft.Win32;
 using XB1ControllerBatteryIndicator.BatteryPopup;
 
@@ -48,7 +44,7 @@ namespace XB1ControllerBatteryIndicator
 			new Controller(UserIndex.Four)
 		};
 
-		private readonly IDictionary<Controller, Popup> _popups = new Dictionary<Controller, Popup>();
+		private readonly Popup _popup = new BatteryLevelPopupView();
 
 		public SystemTrayViewModel()
 		{
@@ -389,42 +385,37 @@ namespace XB1ControllerBatteryIndicator
 			var batteryInfo = controller.GetBatteryInformation(BatteryDeviceType.Gamepad);
 			if (batteryInfo.BatteryType != BatteryType.Wired)
 			{
-				var message = GetPopupMessage(controller, batteryInfo);
-				OnUIThread(() => ShowPopup(controller, message));
+				OnUIThread(() => ShowPopup(controller, batteryInfo));
 			}
 		}
 
-		private void ShowPopup(Controller controller, string message)
+		private void ShowPopup(Controller controller, BatteryInformation batteryInformation)
 		{
-			Popup popup;
-			if (!_popups.TryGetValue(controller, out popup))
-			{
-				popup = new BatteryLevelPopupView();
-				_popups.Add(controller, popup);
-			}
-
-			if (popup.IsOpen)
+			if (_popup.IsOpen)
 				return;
+
+			var popupSize = new Size(300, 60);
+
+			var displaySize = new Size(SystemParameters.FullPrimaryScreenWidth, SystemParameters.FullPrimaryScreenHeight);
+			var x = (displaySize.Width - popupSize.Width) * 0.5;
+			var y = (displaySize.Height - popupSize.Height) * 0.8;
+			var location = new Point(x, y);
 
 			var viewModel = new SimpleBatteryLevelPopupViewModel()
 			{
 				DisplayDuration = TimeSpan.FromSeconds(3),
-				Position = new Rect(new Point(10, 10), new Size(400, 30)),
-				CornerRadius = new CornerRadius(15),
-				Background = Brushes.White,
-				BorderColor = Brushes.Black, BorderSize = new Thickness(2),
-				Message = message
+				Position = new Rect(location, popupSize),
+				CornerRadius = new CornerRadius(30),
+				Background = Brushes.DimGray,
+				ForegroundColor = Brushes.GhostWhite,
+				BorderSize = new Thickness(2),
+				ControllerName = $"Controller {GetControllerIndexCaption(controller.UserIndex)}",
+				BatteryLevel =  $"Battery Level: {GetBatteryLevelCaption(batteryInformation.BatteryLevel)}",
+				FontSize = 20,
 			};
-			popup.DataContext = viewModel;
+			_popup.DataContext = viewModel;
 
-			popup.IsOpen = true;
-		}
-
-		private string GetPopupMessage(Controller controller, BatteryInformation batteryInformation)
-		{
-			var controllerIndexCaption = GetControllerIndexCaption(controller.UserIndex);
-			var batteryLevelCaption = GetBatteryLevelCaption(batteryInformation.BatteryLevel);
-			return string.Format(Strings.ToolTip_Wireless, controllerIndexCaption, batteryLevelCaption);
+			_popup.IsOpen = true;
 		}
 	}
 }

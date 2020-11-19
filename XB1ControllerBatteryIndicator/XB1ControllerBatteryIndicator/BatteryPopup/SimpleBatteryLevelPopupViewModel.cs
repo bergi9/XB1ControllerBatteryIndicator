@@ -7,18 +7,26 @@ namespace XB1ControllerBatteryIndicator.BatteryPopup
 {
 	public class SimpleBatteryLevelPopupViewModel : PropertyChangedBase, IBatteryLevelPopupViewModel
 	{
-		private string _message;
+		private string _batteryLevel;
 		private TimeSpan _displayDuration;
 		private Rect _position;
 		private CornerRadius _cornerRadius;
 		private SolidColorBrush _background;
-		private SolidColorBrush _borderColor;
+		private SolidColorBrush _foregroundColor;
 		private Thickness _borderSize;
+		private string _controllerName;
+		private double _fontSize;
 
-		public string Message
+		public string ControllerName
 		{
-			get { return _message; }
-			set { Set(ref _message, value); }
+			get { return _controllerName; }
+			set { Set(ref _controllerName, value); }
+		}
+
+		public string BatteryLevel
+		{
+			get { return _batteryLevel; }
+			set { Set(ref _batteryLevel, value); }
 		}
 
 		public TimeSpan DisplayDuration
@@ -45,16 +53,22 @@ namespace XB1ControllerBatteryIndicator.BatteryPopup
 			set { Set(ref _background, value); }
 		}
 
-		public SolidColorBrush BorderColor
+		public SolidColorBrush ForegroundColor
 		{
-			get { return _borderColor; }
-			set { Set(ref _borderColor, value); }
+			get { return _foregroundColor; }
+			set { Set(ref _foregroundColor, value); }
 		}
 
 		public Thickness BorderSize
 		{
 			get { return _borderSize; }
 			set { Set(ref _borderSize, value); }
+		}
+
+		public double FontSize
+		{
+			get { return _fontSize; }
+			set { Set(ref _fontSize, value); }
 		}
 	}
 }
