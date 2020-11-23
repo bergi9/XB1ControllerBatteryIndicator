@@ -151,6 +151,15 @@ namespace XB1ControllerBatteryIndicator.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string ContextMenu_PopupSettings {
+            get {
+                return ResourceManager.GetString("ContextMenu_PopupSettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Check for new version on start.
         /// </summary>
         public static string ContextMenu_UpdateCheck {
@@ -259,7 +268,7 @@ namespace XB1ControllerBatteryIndicator.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Display Duration:.
+        ///   Looks up a localized string similar to Display:.
         /// </summary>
         public static string PopupSettings_DisplayDuration {
             get {

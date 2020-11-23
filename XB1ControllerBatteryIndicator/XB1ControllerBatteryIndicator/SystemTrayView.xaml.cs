@@ -202,7 +202,7 @@ namespace XB1ControllerBatteryIndicator
             Properties.Settings.Default.Save();
         }
 
-        private void PopupOptions_OnClick(object sender, RoutedEventArgs e)
+        private void PopupSettings_OnClick(object sender, RoutedEventArgs e)
         {
             var popupSettingsView = new BatteryPopupSettingsView();
 

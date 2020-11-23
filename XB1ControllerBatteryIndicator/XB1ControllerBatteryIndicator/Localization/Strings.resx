@@ -205,7 +205,7 @@
     <value>Colors</value>
   </data>
   <data name="PopupSettings_DisplayDuration" xml:space="preserve">
-    <value>Display Duration:</value>
+    <value>Display:</value>
   </data>
   <data name="PopupSettings_Font" xml:space="preserve">
     <value>Font</value>
@@ -251,5 +251,8 @@
   </data>
   <data name="Popup_ControllerName" xml:space="preserve">
     <value>Controller {0}</value>
+  </data>
+  <data name="ContextMenu_PopupSettings" xml:space="preserve">
+    <value>Popup Settings...</value>
   </data>
 </root>

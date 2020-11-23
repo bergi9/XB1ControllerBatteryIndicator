@@ -195,4 +195,52 @@
   <data name="ContextMenu_LowBatteryWarningSound_Loop_Enabled" xml:space="preserve">
     <value>Включить повторение</value>
   </data>
+  <data name="PopupSettings_Background" xml:space="preserve">
+    <value>Фон:</value>
+  </data>
+  <data name="PopupSettings_Cancel" xml:space="preserve">
+    <value>Отмена</value>
+  </data>
+  <data name="PopupSettings_Colors" xml:space="preserve">
+    <value>Цвета</value>
+  </data>
+  <data name="PopupSettings_DisplayDuration" xml:space="preserve">
+    <value>Отображение:</value>
+  </data>
+  <data name="PopupSettings_Font" xml:space="preserve">
+    <value>Шрифт</value>
+  </data>
+  <data name="PopupSettings_FontSize" xml:space="preserve">
+    <value>Размер:</value>
+  </data>
+  <data name="PopupSettings_Foreground" xml:space="preserve">
+    <value>Основной:</value>
+  </data>
+  <data name="PopupSettings_Height" xml:space="preserve">
+    <value>Высота:</value>
+  </data>
+  <data name="PopupSettings_Positioning" xml:space="preserve">
+    <value>Позиционирование</value>
+  </data>
+  <data name="PopupSettings_Save" xml:space="preserve">
+    <value>Сохранить</value>
+  </data>
+  <data name="PopupSettings_Seconds" xml:space="preserve">
+    <value>сек</value>
+  </data>
+  <data name="PopupSettings_Time" xml:space="preserve">
+    <value>Время</value>
+  </data>
+  <data name="PopupSettings_Width" xml:space="preserve">
+    <value>Ширина:</value>
+  </data>
+  <data name="Popup_BatteryLevel" xml:space="preserve">
+    <value>Уровень заряда: {0}</value>
+  </data>
+  <data name="Popup_ControllerName" xml:space="preserve">
+    <value>Контроллер {0}</value>
+  </data>
+  <data name="ContextMenu_PopupSettings" xml:space="preserve">
+    <value>Настройки всплывающего окна...</value>
+  </data>
 </root>
