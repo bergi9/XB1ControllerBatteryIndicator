@@ -151,11 +151,38 @@ namespace XB1ControllerBatteryIndicator.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Popup Settings....
         /// </summary>
         public static string ContextMenu_PopupSettings {
             get {
                 return ResourceManager.GetString("ContextMenu_PopupSettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show Popup on Guide.
+        /// </summary>
+        public static string ContextMenu_ShowPopupOnGuide {
+            get {
+                return ResourceManager.GetString("ContextMenu_ShowPopupOnGuide", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show Popup on low battery.
+        /// </summary>
+        public static string ContextMenu_ShowPopupOnLowBattery {
+            get {
+                return ResourceManager.GetString("ContextMenu_ShowPopupOnLowBattery", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show Toast on low battery.
+        /// </summary>
+        public static string ContextMenu_ShowToastOnLowBattery {
+            get {
+                return ResourceManager.GetString("ContextMenu_ShowToastOnLowBattery", resourceCulture);
             }
         }
         

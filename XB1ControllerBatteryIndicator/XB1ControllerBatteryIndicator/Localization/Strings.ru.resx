@@ -190,7 +190,7 @@
     <value>Включено</value>
   </data>
   <data name="ContextMenu_LowBatteryWarningSound" xml:space="preserve">
-    <value>Звуковое предупреждение о разрядке</value>
+    <value>Звуковое предупреждение при низком заряде</value>
   </data>
   <data name="ContextMenu_LowBatteryWarningSound_Loop_Enabled" xml:space="preserve">
     <value>Включить повторение</value>
@@ -242,5 +242,14 @@
   </data>
   <data name="ContextMenu_PopupSettings" xml:space="preserve">
     <value>Настройки всплывающего окна...</value>
+  </data>
+  <data name="ContextMenu_ShowPopupOnGuide" xml:space="preserve">
+    <value>Показывать всплывающее окно при нажатии Гайд</value>
+  </data>
+  <data name="ContextMenu_ShowPopupOnLowBattery" xml:space="preserve">
+    <value>Показывать всплыкающее окно при низком заряде</value>
+  </data>
+  <data name="ContextMenu_ShowToastOnLowBattery" xml:space="preserve">
+    <value>Показывать уведомление при низком заряде</value>
   </data>
 </root>

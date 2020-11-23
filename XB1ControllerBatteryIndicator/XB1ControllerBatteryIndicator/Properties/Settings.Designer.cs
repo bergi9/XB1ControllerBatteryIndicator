@@ -97,8 +97,44 @@ namespace XB1ControllerBatteryIndicator.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool ShowToastOnLowBattery {
+            get {
+                return ((bool)(this["ShowToastOnLowBattery"]));
+            }
+            set {
+                this["ShowToastOnLowBattery"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool ShowPopupOnLowBattery {
+            get {
+                return ((bool)(this["ShowPopupOnLowBattery"]));
+            }
+            set {
+                this["ShowPopupOnLowBattery"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool ShowPopupOnGuide {
+            get {
+                return ((bool)(this["ShowPopupOnGuide"]));
+            }
+            set {
+                this["ShowPopupOnGuide"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute(@"
-          <SimpleBatteryPopupSettings>
+          <SimpleBatteryPopupSettings xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xmlns:xsd=""http://www.w3.org/2001/XMLSchema"">
             <Size>
               <Width>300</Width>
               <Height>60</Height>
@@ -117,6 +153,42 @@ namespace XB1ControllerBatteryIndicator.Properties {
             }
             set {
                 this["PopupSettings"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool LowBatteryToast_Enabled {
+            get {
+                return ((bool)(this["LowBatteryToast_Enabled"]));
+            }
+            set {
+                this["LowBatteryToast_Enabled"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool LowBatteryPopup_Enabled {
+            get {
+                return ((bool)(this["LowBatteryPopup_Enabled"]));
+            }
+            set {
+                this["LowBatteryPopup_Enabled"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool GuidePressPopup_Enabled {
+            get {
+                return ((bool)(this["GuidePressPopup_Enabled"]));
+            }
+            set {
+                this["GuidePressPopup_Enabled"] = value;
             }
         }
     }

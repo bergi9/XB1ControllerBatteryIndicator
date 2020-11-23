@@ -138,13 +138,17 @@ namespace XB1ControllerBatteryIndicator
 								//when "empty" state is detected...
 								if (batteryInfo.BatteryLevel == BatteryLevel.Empty)
 								{
-									//check if toast (notification) for current controller was already triggered
-									if (toast_shown[numdict[$"{currentController.UserIndex}"]] == false)
+									if (Settings.Default.LowBatteryToast_Enabled)
 									{
-										//if not, trigger it
-										toast_shown[numdict[$"{currentController.UserIndex}"]] = true;
-										ShowToast(currentController.UserIndex);
+										//check if toast (notification) for current controller was already triggered
+										if (toast_shown[numdict[$"{currentController.UserIndex}"]] == false)
+										{
+											//if not, trigger it
+											toast_shown[numdict[$"{currentController.UserIndex}"]] = true;
+											ShowToast(currentController.UserIndex);
+										}
 									}
+
 									//check if notification sound is enabled
 									if (Settings.Default.LowBatteryWarningSound_Enabled)
 									{
@@ -161,6 +165,11 @@ namespace XB1ControllerBatteryIndicator
 											}
 											lowBatteryWarningSoundPlayed = true;
 										}
+									}
+
+									if (Settings.Default.LowBatteryPopup_Enabled)
+									{
+										ShowPopup(currentController, batteryInfo);
 									}
 								}
 							}
@@ -371,6 +380,9 @@ namespace XB1ControllerBatteryIndicator
 
 		private void PollGuideButton()
 		{
+			if (!Settings.Default.GuidePressPopup_Enabled)
+				return;
+
 			foreach (var controller in _controllers.Where(controller => controller.IsConnected))
 			{
 				if (XInputWrapper.IsGuidePressed(controller.UserIndex))
@@ -380,7 +392,7 @@ namespace XB1ControllerBatteryIndicator
 			}
 		}
 
-		public void ShowPopup(Controller controller)
+		private void ShowPopup(Controller controller)
 		{
 			var batteryInfo = controller.GetBatteryInformation(BatteryDeviceType.Gamepad);
 			if (batteryInfo.BatteryType != BatteryType.Wired)

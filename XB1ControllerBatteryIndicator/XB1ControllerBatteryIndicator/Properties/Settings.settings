@@ -20,9 +20,18 @@
     <Setting Name="LowBatteryWarningSound_Loop_Enabled" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
+    <Setting Name="ShowToastOnLowBattery" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="ShowPopupOnLowBattery" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="ShowPopupOnGuide" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
     <Setting Name="PopupSettings" Type="XB1ControllerBatteryIndicator.BatteryPopup.SimpleBatteryPopupSettings" Scope="User">
       <Value Profile="(Default)">
-          &lt;SimpleBatteryPopupSettings&gt;
+          &lt;SimpleBatteryPopupSettings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
             &lt;Size&gt;
               &lt;Width&gt;300&lt;/Width&gt;
               &lt;Height&gt;60&lt;/Height&gt;
@@ -35,6 +44,15 @@
             &lt;FontSize&gt;20&lt;/FontSize&gt;
           &lt;/SimpleBatteryPopupSettings&gt;
         </Value>
+    </Setting>
+    <Setting Name="LowBatteryToast_Enabled" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="LowBatteryPopup_Enabled" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="GuidePressPopup_Enabled" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
     </Setting>
   </Settings>
 </SettingsFile>

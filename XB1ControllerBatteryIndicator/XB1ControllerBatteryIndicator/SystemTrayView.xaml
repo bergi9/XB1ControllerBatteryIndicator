@@ -43,11 +43,16 @@
                     </Style>
                 </MenuItem.ItemContainerStyle>
             </MenuItem>
+            <Separator/>
+            <MenuItem Header="{my:Localization ContextMenu_ShowToastOnLowBattery}" IsCheckable="True" Click="ShowToastOnLowBattery_Click" IsChecked="{my:SettingBinding Path=ShowToastOnLowBattery}"/>
             <MenuItem Header="{my:Localization ContextMenu_LowBatteryWarningSound}" IsCheckable="False" ItemsSource="{Binding Path=LowBatteryWarningSoundOptions}" DisplayMemberPath="DisplayName">
                 <MenuItem x:Name="LowBatteryWarningSound_Enabled" Header="{my:Localization ContextMenu_LowBatteryWarningSound_Enabled}" IsCheckable="True" Click="LowBatteryWarningSound_Enabled_Click" IsChecked="{my:SettingBinding Path=LowBatteryWarningSound_Enabled}" />
                 <MenuItem x:Name="LowBatteryWarningSound_Loop_Enabled" Header="{my:Localization ContextMenu_LowBatteryWarningSound_Loop_Enabled}" IsCheckable="True" Click="LowBatteryWarningSound_Loop_Enabled_Click" IsChecked="{my:SettingBinding Path=LowBatteryWarningSound_Loop_Enabled}" />
             </MenuItem>
-            <MenuItem Header="{my:Localization ContextMenu_PopupSettings}" IsChecked="False" Click="PopupSettings_OnClick"/>
+            <Separator/>
+            <MenuItem Header="{my:Localization ContextMenu_ShowPopupOnLowBattery}" IsCheckable="True" Click="ShowPopupOnLowBattery_Click" IsChecked="{my:SettingBinding ShowPopupOnLowBattery}"/>
+            <MenuItem Header="{my:Localization ContextMenu_ShowPopupOnGuide}" IsCheckable="True" Click="ShowPopupOnGuide_Click" IsChecked="{my:SettingBinding ShowPopupOnGuide}"/>
+            <MenuItem Header="{my:Localization ContextMenu_PopupSettings}" Click="PopupSettings_OnClick"/>
             <Separator/>
             <MenuItem Header="{my:Localization ContextMenu_Exit}" cal:Message.Attach="ExitApplication" />
         </ContextMenu>

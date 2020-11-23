@@ -225,6 +225,51 @@ namespace XB1ControllerBatteryIndicator
 	        ViewModelBinder.Bind(viewModel, popupSettingsView, null);
 	        popupSettingsView.ShowDialog();
         }
+
+        private void ShowToastOnLowBattery_Click(object sender, RoutedEventArgs e)
+        {
+	        bool showToastOnLowBattery = !Settings.Default.LowBatteryToast_Enabled;
+	        if (showToastOnLowBattery == false)
+	        {
+		        Settings.Default.LowBatteryToast_Enabled = true;
+		        Settings.Default.Save();
+	        }
+	        else
+	        {
+		        Settings.Default.LowBatteryToast_Enabled = false;
+		        Settings.Default.Save();
+	        }
+        }
+
+        private void ShowPopupOnLowBattery_Click(object sender, RoutedEventArgs e)
+        {
+	        bool showPopupOnLowBattery = !Settings.Default.LowBatteryPopup_Enabled;
+	        if (showPopupOnLowBattery == false)
+	        {
+		        Settings.Default.LowBatteryPopup_Enabled = true;
+		        Settings.Default.Save();
+	        }
+	        else
+	        {
+		        Settings.Default.LowBatteryPopup_Enabled = false;
+		        Settings.Default.Save();
+	        }
+        }
+
+        private void ShowPopupOnGuide_Click(object sender, RoutedEventArgs e)
+        {
+	        bool showPopupOnGuide = !Settings.Default.GuidePressPopup_Enabled;
+	        if (showPopupOnGuide == false)
+	        {
+		        Settings.Default.GuidePressPopup_Enabled = true;
+		        Settings.Default.Save();
+	        }
+	        else
+	        {
+		        Settings.Default.GuidePressPopup_Enabled = false;
+		        Settings.Default.Save();
+	        }
+        }
     }
     //this enabled using the values stored in the settings file to be used in XAML
     public class SettingBindingExtension : Binding
