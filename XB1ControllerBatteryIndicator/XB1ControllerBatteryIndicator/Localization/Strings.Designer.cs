@@ -313,6 +313,24 @@ namespace XB1ControllerBatteryIndicator.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Bold.
+        /// </summary>
+        public static string PopupSettings_FontBold {
+            get {
+                return ResourceManager.GetString("PopupSettings_FontBold", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Italic.
+        /// </summary>
+        public static string PopupSettings_FontItalic {
+            get {
+                return ResourceManager.GetString("PopupSettings_FontItalic", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Name:.
         /// </summary>
         public static string PopupSettings_FontName {
@@ -327,6 +345,15 @@ namespace XB1ControllerBatteryIndicator.Localization {
         public static string PopupSettings_FontSize {
             get {
                 return ResourceManager.GetString("PopupSettings_FontSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Underline.
+        /// </summary>
+        public static string PopupSettings_FontUnderline {
+            get {
+                return ResourceManager.GetString("PopupSettings_FontUnderline", resourceCulture);
             }
         }
         

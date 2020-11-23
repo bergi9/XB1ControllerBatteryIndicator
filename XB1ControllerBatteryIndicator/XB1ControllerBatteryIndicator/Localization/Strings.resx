@@ -267,4 +267,13 @@
   <data name="PopupSettings_FontName" xml:space="preserve">
     <value>Name:</value>
   </data>
+  <data name="PopupSettings_FontBold" xml:space="preserve">
+    <value>Bold</value>
+  </data>
+  <data name="PopupSettings_FontItalic" xml:space="preserve">
+    <value>Italic</value>
+  </data>
+  <data name="PopupSettings_FontUnderline" xml:space="preserve">
+    <value>Underline</value>
+  </data>
 </root>

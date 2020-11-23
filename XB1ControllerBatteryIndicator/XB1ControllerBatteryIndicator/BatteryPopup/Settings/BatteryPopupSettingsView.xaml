@@ -96,6 +96,22 @@
                     </ComboBox>
                 </Grid>
             </DataTemplate>
+
+            <DataTemplate DataType="{x:Type local:BoolSetting}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" SharedSizeGroup="Caption"/>
+                        <ColumnDefinition Width="3*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="0" Target="{x:Reference Selector}" Content="{Binding Path=Caption}"
+                           VerticalAlignment="Center"/>
+                    <CheckBox Grid.Column="1"
+                              x:Name="Selector"
+                              IsChecked="{Binding Path=Value, UpdateSourceTrigger=PropertyChanged}"
+                              VerticalAlignment="Center"/>
+                </Grid>
+                
+            </DataTemplate>
         </ResourceDictionary>
     </Window.Resources>
     <StackPanel Orientation="Vertical" Grid.IsSharedSizeScope="True">
@@ -128,6 +144,9 @@
             <StackPanel>
                 <ContentControl Content="{Binding Path=FontFamily}"/>
                 <ContentControl Content="{Binding Path=FontSize}"/>
+                <ContentControl Content="{Binding Path=FontBold}"/>
+                <ContentControl Content="{Binding Path=FontItalic}"/>
+                <ContentControl Content="{Binding Path=FontUnderline}"/>
             </StackPanel>
         </GroupBox>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="5">

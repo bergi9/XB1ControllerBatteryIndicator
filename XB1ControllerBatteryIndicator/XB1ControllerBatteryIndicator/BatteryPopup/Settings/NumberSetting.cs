@@ -1,34 +1,20 @@
-﻿using Caliburn.Micro;
-
-namespace XB1ControllerBatteryIndicator.BatteryPopup.Settings
+﻿namespace XB1ControllerBatteryIndicator.BatteryPopup.Settings
 {
-	internal class NumberSetting : PropertyChangedBase
+	internal class NumberSetting : SettingBase<int>
 	{
-		private int _value;
 		private int _minValue;
 		private int _maxValue;
-		private string _caption;
 		private string _unit;
 
-		public NumberSetting(string caption, int value, int minValue, int maxValue, string unit)
+		public NumberSetting(string caption, int value, int minValue, int maxValue, string unit) : base(caption, value)
 		{
-			Caption = caption;
-			Value = value;
 			MinValue = minValue;
 			MaxValue = maxValue;
 			Unit = unit;
 		}
 
-		public string Caption
+		public NumberSetting(string caption, double value, double minValue, double maxValue, string unit) : this(caption, (int)value, (int)minValue, (int)maxValue, unit)
 		{
-			get => _caption;
-			set => Set(ref _caption, value);
-		}
-
-		public int Value
-		{
-			get => _value;
-			set => Set(ref _value, value);
 		}
 
 		public int MinValue
