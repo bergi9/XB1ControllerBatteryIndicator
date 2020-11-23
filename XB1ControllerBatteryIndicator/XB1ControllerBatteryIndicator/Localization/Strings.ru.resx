@@ -255,4 +255,13 @@
   <data name="PopupSettings_FontName" xml:space="preserve">
     <value>Имя:</value>
   </data>
+  <data name="PopupSettings_FontBold" xml:space="preserve">
+    <value>Жирный:</value>
+  </data>
+  <data name="PopupSettings_FontItalic" xml:space="preserve">
+    <value>Курсив:</value>
+  </data>
+  <data name="PopupSettings_FontUnderline" xml:space="preserve">
+    <value>Подчеркнутый:</value>
+  </data>
 </root>

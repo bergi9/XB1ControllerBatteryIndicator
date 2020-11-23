@@ -268,12 +268,12 @@
     <value>Name:</value>
   </data>
   <data name="PopupSettings_FontBold" xml:space="preserve">
-    <value>Bold</value>
+    <value>Bold:</value>
   </data>
   <data name="PopupSettings_FontItalic" xml:space="preserve">
-    <value>Italic</value>
+    <value>Italic:</value>
   </data>
   <data name="PopupSettings_FontUnderline" xml:space="preserve">
-    <value>Underline</value>
+    <value>Underline:</value>
   </data>
 </root>

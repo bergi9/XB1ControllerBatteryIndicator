@@ -313,7 +313,7 @@ namespace XB1ControllerBatteryIndicator.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bold.
+        ///   Looks up a localized string similar to Bold:.
         /// </summary>
         public static string PopupSettings_FontBold {
             get {
@@ -322,7 +322,7 @@ namespace XB1ControllerBatteryIndicator.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Italic.
+        ///   Looks up a localized string similar to Italic:.
         /// </summary>
         public static string PopupSettings_FontItalic {
             get {
@@ -349,7 +349,7 @@ namespace XB1ControllerBatteryIndicator.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Underline.
+        ///   Looks up a localized string similar to Underline:.
         /// </summary>
         public static string PopupSettings_FontUnderline {
             get {
