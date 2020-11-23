@@ -206,20 +206,9 @@ namespace XB1ControllerBatteryIndicator
         {
             var popupSettingsView = new BatteryPopupSettingsView();
 
-	        var popupSettings = Settings.Default.PopupSettings;
-
-	        var currentPopup = new SimpleBatteryLevelPopupViewModel()
-	        {
-		        DisplayDuration = popupSettings.DisplayDuration,
-		        Position = new Point(),
-                Size = popupSettings.Size,
-		        Background = new SolidColorBrush(popupSettings.BackgroundColor),
-		        ForegroundColor = new SolidColorBrush(popupSettings.ForegroundColor),
-		        BorderSize = new Thickness(2),
-		        ControllerName = string.Format(Strings.Popup_ControllerName, Strings.ControllerIndex_One),
-		        BatteryLevel = string.Format(Strings.Popup_BatteryLevel, Strings.BatteryLevel_Medium),
-		        FontSize = popupSettings.FontSize,
-	        };
+	        var currentPopup = new SimpleBatteryLevelPopupViewModel(Settings.Default.PopupSettings,
+		        string.Format(Strings.Popup_ControllerName, Strings.ControllerIndex_One),
+		        string.Format(Strings.Popup_BatteryLevel, Strings.BatteryLevel_Medium));
 
 	        var viewModel = new BatteryPopupSettingsViewModel() { CurrentPopup = currentPopup };
 	        ViewModelBinder.Bind(viewModel, popupSettingsView, null);

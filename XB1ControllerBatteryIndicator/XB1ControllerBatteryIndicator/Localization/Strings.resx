@@ -264,4 +264,7 @@
   <data name="ContextMenu_ShowToastOnLowBattery" xml:space="preserve">
     <value>Show Toast on low battery</value>
   </data>
+  <data name="PopupSettings_FontName" xml:space="preserve">
+    <value>Name:</value>
+  </data>
 </root>

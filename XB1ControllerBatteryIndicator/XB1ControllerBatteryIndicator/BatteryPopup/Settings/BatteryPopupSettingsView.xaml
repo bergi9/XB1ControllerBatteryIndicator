@@ -73,6 +73,29 @@
                     </ComboBox>
                 </Grid>
             </DataTemplate>
+
+            <DataTemplate DataType="{x:Type local:FontSetting}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" SharedSizeGroup="Caption"/>
+                        <ColumnDefinition Width="3*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="0" Target="{x:Reference Selector}" Content="{Binding Path=Caption}"
+                           VerticalAlignment="Center"/>
+                    <ComboBox Grid.Column="1"
+                              x:Name="Selector"
+                              VerticalAlignment="Center"
+                              ItemsSource="{Binding Path=Fonts}"
+                              SelectedValuePath="Source"
+                              SelectedValue="{Binding Path=Value}">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate DataType="FontFamily">
+                                <TextBlock Text="{Binding Path=Source}" FontFamily="{Binding}"/>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                </Grid>
+            </DataTemplate>
         </ResourceDictionary>
     </Window.Resources>
     <StackPanel Orientation="Vertical" Grid.IsSharedSizeScope="True">
@@ -103,12 +126,20 @@
         </GroupBox>
         <GroupBox Margin="5, 5, 5, 0" Header="{x:Static localization:Strings.PopupSettings_Font}">
             <StackPanel>
+                <ContentControl Content="{Binding Path=FontFamily}"/>
                 <ContentControl Content="{Binding Path=FontSize}"/>
             </StackPanel>
         </GroupBox>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="5">
-            <Button x:Name="Save" Content="{x:Static localization:Strings.PopupSettings_Save}" Height="20" MinWidth="50"/>
-            <Button x:Name="Cancel" Margin="5, 0, 0, 0" Content="{x:Static localization:Strings.PopupSettings_Cancel}" Height="20" MinWidth="50"/>
+            <Button x:Name="Save"
+                    Content="{x:Static localization:Strings.PopupSettings_Save}"
+                    MinWidth="50"
+                    Padding="5, 2"/>
+            <Button x:Name="Cancel"
+                    Margin="5, 0, 0, 0"
+                    Content="{x:Static localization:Strings.PopupSettings_Cancel}"
+                    MinWidth="50"
+                    Padding="5, 2"/>
         </StackPanel>
     </StackPanel>
 </Window>

@@ -172,6 +172,7 @@
     </Compile>
     <Compile Include="BatteryPopup\Settings\BatteryPopupSettingsViewModel.cs" />
     <Compile Include="BatteryPopup\Settings\ColorSetting.cs" />
+    <Compile Include="BatteryPopup\Settings\FontSetting.cs" />
     <Compile Include="BatteryPopup\Settings\NumberSetting.cs" />
     <Compile Include="BatteryPopup\SimpleBatteryLevelPopupViewModel.cs" />
     <Compile Include="BatteryPopup\IBatteryLevelPopupViewModel.cs" />

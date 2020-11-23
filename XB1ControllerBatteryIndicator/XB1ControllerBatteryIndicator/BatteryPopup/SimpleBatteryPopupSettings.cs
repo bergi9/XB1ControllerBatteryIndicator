@@ -44,5 +44,6 @@ namespace XB1ControllerBatteryIndicator.BatteryPopup
 		}
 
 		public double FontSize { get; set; }
+		public string FontName { get; set; }
 	}
 }

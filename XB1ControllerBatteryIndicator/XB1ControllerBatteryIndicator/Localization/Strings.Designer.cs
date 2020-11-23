@@ -313,6 +313,15 @@ namespace XB1ControllerBatteryIndicator.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Name:.
+        /// </summary>
+        public static string PopupSettings_FontName {
+            get {
+                return ResourceManager.GetString("PopupSettings_FontName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Size:.
         /// </summary>
         public static string PopupSettings_FontSize {

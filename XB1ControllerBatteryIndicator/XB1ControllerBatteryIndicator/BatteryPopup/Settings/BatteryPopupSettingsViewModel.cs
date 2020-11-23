@@ -29,8 +29,18 @@ namespace XB1ControllerBatteryIndicator.BatteryPopup.Settings
 
 			FontSize = new NumberSetting(Strings.PopupSettings_FontSize, (int) Properties.Settings.Default.PopupSettings.FontSize, 1, 100, Strings.PopupSettings_Pixel);
 			FontSize.PropertyChanged += FontSizeOnPropertyChanged;
+			FontFamily = new FontSetting(Strings.PopupSettings_FontName, Properties.Settings.Default.PopupSettings.FontName);
+			FontFamily.PropertyChanged += FontFamilyOnPropertyChanged;
 
 			DisplayDuration = new NumberSetting(Strings.PopupSettings_DisplayDuration, Properties.Settings.Default.PopupSettings.DisplayDuration.Seconds, 1, 30, Strings.PopupSettings_Seconds);
+		}
+
+		private void FontFamilyOnPropertyChanged(object sender, PropertyChangedEventArgs e)
+		{
+			if (e.PropertyName == nameof(FontSetting.Value))
+			{
+				CurrentPopup.FontFamily = new FontFamily(FontFamily.Value);
+			}
 		}
 
 		private void WidthOnPropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -61,7 +71,7 @@ namespace XB1ControllerBatteryIndicator.BatteryPopup.Settings
 		{
 			if (e.PropertyName == nameof(ColorSetting.Value))
 			{
-				CurrentPopup.Background = new SolidColorBrush(BackgroundColor.Value);
+				CurrentPopup.BackgroundColor = new SolidColorBrush(BackgroundColor.Value);
 			}
 		}
 
@@ -88,6 +98,7 @@ namespace XB1ControllerBatteryIndicator.BatteryPopup.Settings
 		public ColorSetting ForegroundColor { get; }
 
 		public NumberSetting FontSize { get; }
+		public FontSetting FontFamily { get; }
 
 		public NumberSetting DisplayDuration { get; }
 
@@ -102,6 +113,7 @@ namespace XB1ControllerBatteryIndicator.BatteryPopup.Settings
 				ForegroundColor = ForegroundColor.Value,
 				FontSize = FontSize.Value,
 				DisplayDuration = TimeSpan.FromSeconds(DisplayDuration.Value),
+				FontName = FontFamily.Value,
 			};
 
 			Properties.Settings.Default.Save();

@@ -252,4 +252,7 @@
   <data name="ContextMenu_ShowToastOnLowBattery" xml:space="preserve">
     <value>Показывать уведомление при низком заряде</value>
   </data>
+  <data name="PopupSettings_FontName" xml:space="preserve">
+    <value>Имя:</value>
+  </data>
 </root>
