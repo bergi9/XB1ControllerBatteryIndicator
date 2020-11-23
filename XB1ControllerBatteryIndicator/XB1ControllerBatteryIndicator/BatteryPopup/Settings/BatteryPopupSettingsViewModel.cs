@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Windows;
 using System.Windows.Media;
 using Caliburn.Micro;
+using XB1ControllerBatteryIndicator.Localization;
 
 namespace XB1ControllerBatteryIndicator.BatteryPopup.Settings
 {
@@ -12,23 +13,32 @@ namespace XB1ControllerBatteryIndicator.BatteryPopup.Settings
 
 		public BatteryPopupSettingsViewModel()
 		{
-			X = new NumberSetting("X:", (int)(Properties.Settings.Default.PopupSettings.X * 100), 0, 100, "%");
-			Y = new NumberSetting("Y:", (int)(Properties.Settings.Default.PopupSettings.Y * 100), 0, 100, "%");
+			X = new NumberSetting(Strings.PopupSettings_X, (int)(Properties.Settings.Default.PopupSettings.X * 100), 0, 100, Strings.PopupSettings_Percent);
+			Y = new NumberSetting(Strings.PopupSettings_Y, (int)(Properties.Settings.Default.PopupSettings.Y * 100), 0, 100, Strings.PopupSettings_Percent);
 
-			Width = new NumberSetting("Width:", (int)Properties.Settings.Default.PopupSettings.Size.Width, 0, (int)SystemParameters.PrimaryScreenWidth, "px");
-			Height = new NumberSetting("Height:", (int)Properties.Settings.Default.PopupSettings.Size.Height, 0, (int)SystemParameters.PrimaryScreenHeight, "px");
+			Width = new NumberSetting(Strings.PopupSettings_Width, (int)Properties.Settings.Default.PopupSettings.Size.Width, 0, (int)SystemParameters.PrimaryScreenWidth, Strings.PopupSettings_Pixel);
+			Height = new NumberSetting(Strings.PopupSettings_Height, (int)Properties.Settings.Default.PopupSettings.Size.Height, 0, (int)SystemParameters.PrimaryScreenHeight, Strings.PopupSettings_Pixel);
 
+			Width.PropertyChanged += WidthOnPropertyChanged;
 			Height.PropertyChanged += HeightOnPropertyChanged;
 
-			BackgroundColor = new ColorSetting("Background:", Properties.Settings.Default.PopupSettings.BackgroundColor);
+			BackgroundColor = new ColorSetting(Strings.PopupSettings_Background, Properties.Settings.Default.PopupSettings.BackgroundColor);
 			BackgroundColor.PropertyChanged += BackgroundColorOnPropertyChanged;
-			ForegroundColor = new ColorSetting("Foreground:", Properties.Settings.Default.PopupSettings.ForegroundColor);
+			ForegroundColor = new ColorSetting(Strings.PopupSettings_Foreground, Properties.Settings.Default.PopupSettings.ForegroundColor);
 			ForegroundColor.PropertyChanged += ForegroundColorOnPropertyChanged;
 
-			FontSize = new NumberSetting("Size:", (int) Properties.Settings.Default.PopupSettings.FontSize, 1, 100, "px");
+			FontSize = new NumberSetting(Strings.PopupSettings_FontSize, (int) Properties.Settings.Default.PopupSettings.FontSize, 1, 100, Strings.PopupSettings_Pixel);
 			FontSize.PropertyChanged += FontSizeOnPropertyChanged;
 
-			DisplayDuration = new NumberSetting("Display Duration:", Properties.Settings.Default.PopupSettings.DisplayDuration.Seconds, 1, 30, "sec");
+			DisplayDuration = new NumberSetting(Strings.PopupSettings_DisplayDuration, Properties.Settings.Default.PopupSettings.DisplayDuration.Seconds, 1, 30, Strings.PopupSettings_Seconds);
+		}
+
+		private void WidthOnPropertyChanged(object sender, PropertyChangedEventArgs e)
+		{
+			if (e.PropertyName == nameof(NumberSetting.Value))
+			{
+				CurrentPopup.Size = new Size(Width.Value, Height.Value);
+			}
 		}
 
 		private void FontSizeOnPropertyChanged(object sender, PropertyChangedEventArgs e)

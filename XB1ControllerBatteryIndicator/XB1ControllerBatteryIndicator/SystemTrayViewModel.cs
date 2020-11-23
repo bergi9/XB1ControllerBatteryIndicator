@@ -409,8 +409,8 @@ namespace XB1ControllerBatteryIndicator
 				Background = new SolidColorBrush(popupSettings.BackgroundColor),
 				ForegroundColor = new SolidColorBrush(popupSettings.ForegroundColor),
 				BorderSize = new Thickness(2),
-				ControllerName = $"Controller {GetControllerIndexCaption(controller.UserIndex)}",
-				BatteryLevel =  $"Battery Level: {GetBatteryLevelCaption(batteryInformation.BatteryLevel)}",
+				ControllerName = string.Format(Strings.Popup_ControllerName, GetControllerIndexCaption(controller.UserIndex)),
+				BatteryLevel = string.Format(Strings.Popup_BatteryLevel, GetBatteryLevelCaption(batteryInformation.BatteryLevel)),
 				FontSize = popupSettings.FontSize,
 			};
 			_popup.DataContext = viewModel;

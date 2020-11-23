@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:XB1ControllerBatteryIndicator.BatteryPopup.Settings"
+        xmlns:localization="clr-namespace:XB1ControllerBatteryIndicator.Localization"
         mc:Ignorable="d"
         Title="Battery Popup Settings"
         Height="400" Width="350"
@@ -81,12 +82,12 @@
                             Height="{Binding Path=Height.Value}"/>
         </Viewbox>
         
-        <GroupBox Margin="5, 5, 5, 0" Header="Time">
+        <GroupBox Margin="5, 5, 5, 0" Header="{x:Static localization:Strings.PopupSettings_Time}">
             <StackPanel>
                 <ContentControl Content="{Binding Path=DisplayDuration}"/>
             </StackPanel>
         </GroupBox>
-        <GroupBox Margin="5, 5, 5, 0" Header="Positioning">
+        <GroupBox Margin="5, 5, 5, 0" Header="{x:Static localization:Strings.PopupSettings_Positioning}">
             <StackPanel>
                 <ContentControl Content="{Binding Path=X}"/>
                 <ContentControl Content="{Binding Path=Y}"/>
@@ -94,20 +95,20 @@
                 <ContentControl Content="{Binding Path=Height}"/>
             </StackPanel>
         </GroupBox>
-        <GroupBox Margin="5, 5, 5, 0" Header="Colors">
+        <GroupBox Margin="5, 5, 5, 0" Header="{x:Static localization:Strings.PopupSettings_Colors}">
             <StackPanel>
                 <ContentControl Content="{Binding Path=BackgroundColor}"/>
                 <ContentControl Content="{Binding Path=ForegroundColor}"/>
             </StackPanel>
         </GroupBox>
-        <GroupBox Margin="5, 5, 5, 0" Header="Font">
+        <GroupBox Margin="5, 5, 5, 0" Header="{x:Static localization:Strings.PopupSettings_Font}">
             <StackPanel>
                 <ContentControl Content="{Binding Path=FontSize}"/>
             </StackPanel>
         </GroupBox>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="5">
-            <Button x:Name="Save" Content="Save" Height="20" MinWidth="50"/>
-            <Button x:Name="Cancel" Margin="5, 0, 0, 0" Content="Cancel" Height="20" MinWidth="50"/>
+            <Button x:Name="Save" Content="{x:Static localization:Strings.PopupSettings_Save}" Height="20" MinWidth="50"/>
+            <Button x:Name="Cancel" Margin="5, 0, 0, 0" Content="{x:Static localization:Strings.PopupSettings_Cancel}" Height="20" MinWidth="50"/>
         </StackPanel>
     </StackPanel>
 </Window>

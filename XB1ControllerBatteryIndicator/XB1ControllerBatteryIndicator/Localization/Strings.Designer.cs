@@ -19,7 +19,7 @@ namespace XB1ControllerBatteryIndicator.Localization {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class Strings {
@@ -210,6 +210,177 @@ namespace XB1ControllerBatteryIndicator.Localization {
         public static string NewVersionAvailable_Title {
             get {
                 return ResourceManager.GetString("NewVersionAvailable_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Battery level: {0}.
+        /// </summary>
+        public static string Popup_BatteryLevel {
+            get {
+                return ResourceManager.GetString("Popup_BatteryLevel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Controller {0}.
+        /// </summary>
+        public static string Popup_ControllerName {
+            get {
+                return ResourceManager.GetString("Popup_ControllerName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Background:.
+        /// </summary>
+        public static string PopupSettings_Background {
+            get {
+                return ResourceManager.GetString("PopupSettings_Background", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        public static string PopupSettings_Cancel {
+            get {
+                return ResourceManager.GetString("PopupSettings_Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Colors.
+        /// </summary>
+        public static string PopupSettings_Colors {
+            get {
+                return ResourceManager.GetString("PopupSettings_Colors", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Display Duration:.
+        /// </summary>
+        public static string PopupSettings_DisplayDuration {
+            get {
+                return ResourceManager.GetString("PopupSettings_DisplayDuration", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Font.
+        /// </summary>
+        public static string PopupSettings_Font {
+            get {
+                return ResourceManager.GetString("PopupSettings_Font", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Size:.
+        /// </summary>
+        public static string PopupSettings_FontSize {
+            get {
+                return ResourceManager.GetString("PopupSettings_FontSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Foreground:.
+        /// </summary>
+        public static string PopupSettings_Foreground {
+            get {
+                return ResourceManager.GetString("PopupSettings_Foreground", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Height:.
+        /// </summary>
+        public static string PopupSettings_Height {
+            get {
+                return ResourceManager.GetString("PopupSettings_Height", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to %.
+        /// </summary>
+        public static string PopupSettings_Percent {
+            get {
+                return ResourceManager.GetString("PopupSettings_Percent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to px.
+        /// </summary>
+        public static string PopupSettings_Pixel {
+            get {
+                return ResourceManager.GetString("PopupSettings_Pixel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Positioning.
+        /// </summary>
+        public static string PopupSettings_Positioning {
+            get {
+                return ResourceManager.GetString("PopupSettings_Positioning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save.
+        /// </summary>
+        public static string PopupSettings_Save {
+            get {
+                return ResourceManager.GetString("PopupSettings_Save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to sec.
+        /// </summary>
+        public static string PopupSettings_Seconds {
+            get {
+                return ResourceManager.GetString("PopupSettings_Seconds", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Time.
+        /// </summary>
+        public static string PopupSettings_Time {
+            get {
+                return ResourceManager.GetString("PopupSettings_Time", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Width:.
+        /// </summary>
+        public static string PopupSettings_Width {
+            get {
+                return ResourceManager.GetString("PopupSettings_Width", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to X:.
+        /// </summary>
+        public static string PopupSettings_X {
+            get {
+                return ResourceManager.GetString("PopupSettings_X", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Y:.
+        /// </summary>
+        public static string PopupSettings_Y {
+            get {
+                return ResourceManager.GetString("PopupSettings_Y", resourceCulture);
             }
         }
         
