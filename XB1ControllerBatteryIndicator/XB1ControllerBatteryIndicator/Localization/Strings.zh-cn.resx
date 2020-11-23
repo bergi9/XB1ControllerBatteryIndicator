@@ -195,4 +195,10 @@
   <data name="ContextMenu_LowBatteryWarningSound_Loop_Enabled" xml:space="preserve">
     <value>重复播放</value>
   </data>
+  <data name="Popup_ControllerName" xml:space="preserve">
+    <value>控制器 {0}</value>
+  </data>
+  <data name="Popup_BatteryLevel" xml:space="preserve">
+    <value>电量: {0}</value>
+  </data>
 </root>

@@ -195,4 +195,10 @@
   <data name="ContextMenu_LowBatteryWarningSound_Loop_Enabled" xml:space="preserve">
     <value>Uyarı sesi döngüsü açık</value>
   </data>
+  <data name="Popup_ControllerName" xml:space="preserve">
+    <value>({0})</value>
+  </data>
+  <data name="Popup_BatteryLevel" xml:space="preserve">
+    <value>Batarya oranı: {0}</value>
+  </data>
 </root>

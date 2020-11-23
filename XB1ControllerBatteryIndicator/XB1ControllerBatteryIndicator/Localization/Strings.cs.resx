@@ -195,4 +195,10 @@
   <data name="ContextMenu_LowBatteryWarningSound_Loop_Enabled" xml:space="preserve">
     <value>Opakovat ve smyčce</value>
   </data>
+  <data name="Popup_ControllerName" xml:space="preserve">
+    <value>Ovladač {0}</value>
+  </data>
+  <data name="Popup_BatteryLevel" xml:space="preserve">
+    <value>Úroveň baterie: {0}</value>
+  </data>
 </root>

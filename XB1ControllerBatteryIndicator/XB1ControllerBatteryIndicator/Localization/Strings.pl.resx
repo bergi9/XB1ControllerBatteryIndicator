@@ -195,4 +195,10 @@
   <data name="ContextMenu_LowBatteryWarningSound_Loop_Enabled" xml:space="preserve">
     <value>Powtarzaj</value>
   </data>
+  <data name="Popup_ControllerName" xml:space="preserve">
+    <value>Kontroler {0}</value>
+  </data>
+  <data name="Popup_BatteryLevel" xml:space="preserve">
+    <value>Stan baterii: {0}</value>
+  </data>
 </root>

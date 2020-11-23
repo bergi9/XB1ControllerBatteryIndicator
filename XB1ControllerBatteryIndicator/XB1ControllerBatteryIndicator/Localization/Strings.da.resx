@@ -204,4 +204,10 @@
   <data name="NewMinorVersionAvailable_Body" xml:space="preserve">
     <value>En mindre opdatering til {0} er tilgængelig. Vil Du åbne hjemmesiden ?</value>
   </data>
+  <data name="Popup_BatteryLevel" xml:space="preserve">
+    <value>Batteri niveau: {0}</value>
+  </data>
+  <data name="Popup_ControllerName" xml:space="preserve">
+    <value>Controller {0}</value>
+  </data>
 </root>

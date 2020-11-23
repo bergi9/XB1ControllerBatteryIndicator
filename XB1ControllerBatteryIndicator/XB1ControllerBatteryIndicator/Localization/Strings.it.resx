@@ -195,4 +195,10 @@
   <data name="ContextMenu_LowBatteryWarningSound_Loop_Enabled" xml:space="preserve">
     <value>Riproduci costantemente</value>
   </data>
+  <data name="Popup_BatteryLevel" xml:space="preserve">
+    <value>Livello batteria: {0}</value>
+  </data>
+  <data name="Popup_ControllerName" xml:space="preserve">
+    <value>Controller {0}</value>
+  </data>
 </root>
