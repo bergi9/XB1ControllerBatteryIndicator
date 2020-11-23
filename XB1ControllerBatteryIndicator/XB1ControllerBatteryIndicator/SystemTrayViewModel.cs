@@ -396,16 +396,16 @@ namespace XB1ControllerBatteryIndicator
 
 			var popupSettings = Settings.Default.PopupSettings;
 
-			var displaySize = new Size(SystemParameters.FullPrimaryScreenWidth, SystemParameters.FullPrimaryScreenHeight);
-			var x = (displaySize.Width - popupSettings.Size.Width) * popupSettings.X;
-			var y = (displaySize.Height - popupSettings.Size.Height) * popupSettings.Y;
-			var location = new Point(x, y);
+			var displaySize = new Size(SystemParameters.PrimaryScreenWidth, SystemParameters.PrimaryScreenHeight);
+			var x = displaySize.Width * popupSettings.X - popupSettings.Size.Width / 2;
+			var y = displaySize.Height * popupSettings.Y - popupSettings.Size.Height / 2;
+			var position = new Point(x, y);
 
 			var viewModel = new SimpleBatteryLevelPopupViewModel()
 			{
 				DisplayDuration = popupSettings.DisplayDuration,
-				Position = new Rect(location, popupSettings.Size),
-				CornerRadius = new CornerRadius(popupSettings.Size.Height / 2),
+				Position = position,
+				Size = popupSettings.Size,
 				Background = new SolidColorBrush(popupSettings.BackgroundColor),
 				ForegroundColor = new SolidColorBrush(popupSettings.ForegroundColor),
 				BorderSize = new Thickness(2),

@@ -167,6 +167,12 @@
     <Compile Include="BatteryPopup\BatteryLevelPopupView.xaml.cs">
       <DependentUpon>BatteryLevelPopupView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="BatteryPopup\Settings\BatteryPopupSettingsView.xaml.cs">
+      <DependentUpon>BatteryPopupSettingsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="BatteryPopup\Settings\BatteryPopupSettingsViewModel.cs" />
+    <Compile Include="BatteryPopup\Settings\ColorSetting.cs" />
+    <Compile Include="BatteryPopup\Settings\NumberSetting.cs" />
     <Compile Include="BatteryPopup\SimpleBatteryLevelPopupViewModel.cs" />
     <Compile Include="BatteryPopup\IBatteryLevelPopupViewModel.cs" />
     <Compile Include="BatteryPopup\SimpleBatteryPopupSettings.cs" />
@@ -196,6 +202,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="BatteryPopup\BatteryLevelPopupView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="BatteryPopup\Settings\BatteryPopupSettingsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

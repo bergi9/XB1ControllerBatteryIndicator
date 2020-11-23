@@ -1,0 +1,107 @@
+﻿using System;
+using System.ComponentModel;
+using System.Windows;
+using System.Windows.Media;
+using Caliburn.Micro;
+
+namespace XB1ControllerBatteryIndicator.BatteryPopup.Settings
+{
+	internal class BatteryPopupSettingsViewModel : Screen
+	{
+		private SimpleBatteryLevelPopupViewModel _currentPopup;
+
+		public BatteryPopupSettingsViewModel()
+		{
+			X = new NumberSetting("X:", (int)(Properties.Settings.Default.PopupSettings.X * 100), 0, 100, "%");
+			Y = new NumberSetting("Y:", (int)(Properties.Settings.Default.PopupSettings.Y * 100), 0, 100, "%");
+
+			Width = new NumberSetting("Width:", (int)Properties.Settings.Default.PopupSettings.Size.Width, 0, (int)SystemParameters.PrimaryScreenWidth, "px");
+			Height = new NumberSetting("Height:", (int)Properties.Settings.Default.PopupSettings.Size.Height, 0, (int)SystemParameters.PrimaryScreenHeight, "px");
+
+			Height.PropertyChanged += HeightOnPropertyChanged;
+
+			BackgroundColor = new ColorSetting("Background:", Properties.Settings.Default.PopupSettings.BackgroundColor);
+			BackgroundColor.PropertyChanged += BackgroundColorOnPropertyChanged;
+			ForegroundColor = new ColorSetting("Foreground:", Properties.Settings.Default.PopupSettings.ForegroundColor);
+			ForegroundColor.PropertyChanged += ForegroundColorOnPropertyChanged;
+
+			FontSize = new NumberSetting("Size:", (int) Properties.Settings.Default.PopupSettings.FontSize, 1, 100, "px");
+			FontSize.PropertyChanged += FontSizeOnPropertyChanged;
+
+			DisplayDuration = new NumberSetting("Display Duration:", Properties.Settings.Default.PopupSettings.DisplayDuration.Seconds, 1, 30, "sec");
+		}
+
+		private void FontSizeOnPropertyChanged(object sender, PropertyChangedEventArgs e)
+		{
+			if (e.PropertyName == nameof(NumberSetting.Value))
+			{
+				CurrentPopup.FontSize = FontSize.Value;
+			}
+		}
+
+		private void ForegroundColorOnPropertyChanged(object sender, PropertyChangedEventArgs e)
+		{
+			if (e.PropertyName == nameof(ColorSetting.Value))
+			{
+				CurrentPopup.ForegroundColor = new SolidColorBrush(ForegroundColor.Value);
+			}
+		}
+
+		private void BackgroundColorOnPropertyChanged(object sender, PropertyChangedEventArgs e)
+		{
+			if (e.PropertyName == nameof(ColorSetting.Value))
+			{
+				CurrentPopup.Background = new SolidColorBrush(BackgroundColor.Value);
+			}
+		}
+
+		private void HeightOnPropertyChanged(object sender, PropertyChangedEventArgs e)
+		{
+			if (e.PropertyName == nameof(NumberSetting.Value))
+			{
+				CurrentPopup.Size = new Size(Width.Value, Height.Value);
+			}
+		}
+
+		public SimpleBatteryLevelPopupViewModel CurrentPopup
+		{
+			get => _currentPopup;
+			set => Set(ref _currentPopup, value);
+		}
+
+		public NumberSetting X { get; }
+		public NumberSetting Y { get; }
+		public NumberSetting Width { get; }
+		public NumberSetting Height { get; }
+
+		public ColorSetting BackgroundColor { get; }
+		public ColorSetting ForegroundColor { get; }
+
+		public NumberSetting FontSize { get; }
+
+		public NumberSetting DisplayDuration { get; }
+
+		public void Save()
+		{
+			Properties.Settings.Default.PopupSettings = new SimpleBatteryPopupSettings()
+			{
+				X = X.Value / 100.0,
+				Y = Y.Value / 100.0,
+				Size = new Size(Width.Value, Height.Value),
+				BackgroundColor = BackgroundColor.Value,
+				ForegroundColor = ForegroundColor.Value,
+				FontSize = FontSize.Value,
+				DisplayDuration = TimeSpan.FromSeconds(DisplayDuration.Value),
+			};
+
+			Properties.Settings.Default.Save();
+
+			TryClose(true);
+		}
+
+		public void Cancel()
+		{
+			TryClose(false);
+		}
+	}
+}

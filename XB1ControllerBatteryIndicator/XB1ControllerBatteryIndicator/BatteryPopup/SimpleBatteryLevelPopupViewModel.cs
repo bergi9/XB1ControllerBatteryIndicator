@@ -9,13 +9,14 @@ namespace XB1ControllerBatteryIndicator.BatteryPopup
 	{
 		private string _batteryLevel;
 		private TimeSpan _displayDuration;
-		private Rect _position;
+		private Point _position;
 		private CornerRadius _cornerRadius;
 		private SolidColorBrush _background;
 		private SolidColorBrush _foregroundColor;
 		private Thickness _borderSize;
 		private string _controllerName;
 		private double _fontSize;
+		private Size _size;
 
 		public string ControllerName
 		{
@@ -35,16 +36,26 @@ namespace XB1ControllerBatteryIndicator.BatteryPopup
 			set { Set(ref _displayDuration, value); }
 		}
 
-		public Rect Position
+		public Point Position
 		{
 			get { return _position; }
 			set { Set(ref _position, value); }
 		}
 
+		public Size Size
+		{
+			get { return _size; }
+			set
+			{
+				if (Set(ref _size, value))
+					CornerRadius = new CornerRadius(Size.Height / 2);
+			}
+		}
+
 		public CornerRadius CornerRadius
 		{
 			get { return _cornerRadius; }
-			set { Set(ref _cornerRadius, value); }
+			private set { Set(ref _cornerRadius, value); }
 		}
 
 		public SolidColorBrush Background

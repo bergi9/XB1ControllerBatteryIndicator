@@ -4,8 +4,13 @@ using System;
 using System.Diagnostics;
 using System.Globalization;
 using System.Windows.Data;
+using System.Windows.Media;
 using System.Xml;
+using Caliburn.Micro;
+using XB1ControllerBatteryIndicator.BatteryPopup;
+using XB1ControllerBatteryIndicator.BatteryPopup.Settings;
 using XB1ControllerBatteryIndicator.Localization;
+using XB1ControllerBatteryIndicator.Properties;
 
 namespace XB1ControllerBatteryIndicator
 {
@@ -14,12 +19,12 @@ namespace XB1ControllerBatteryIndicator
     /// </summary>
     public partial class SystemTrayView : Window
     {
-        private SystemTrayViewModel ViewModel => DataContext as SystemTrayViewModel;
+	    private SystemTrayViewModel ViewModel => DataContext as SystemTrayViewModel;
 
         public SystemTrayView()
         {
-            InitializeComponent();
-            CheckForUpdate();
+	        InitializeComponent();
+	        CheckForUpdate();
             this.ShowInTaskbar = false;
 
             var language = new CultureInfo(Properties.Settings.Default.Language);
@@ -195,6 +200,30 @@ namespace XB1ControllerBatteryIndicator
 
             Properties.Settings.Default.Language = selectedLanguage.Name;
             Properties.Settings.Default.Save();
+        }
+
+        private void PopupOptions_OnClick(object sender, RoutedEventArgs e)
+        {
+            var popupSettingsView = new BatteryPopupSettingsView();
+
+	        var popupSettings = Settings.Default.PopupSettings;
+
+	        var currentPopup = new SimpleBatteryLevelPopupViewModel()
+	        {
+		        DisplayDuration = popupSettings.DisplayDuration,
+		        Position = new Point(),
+                Size = popupSettings.Size,
+		        Background = new SolidColorBrush(popupSettings.BackgroundColor),
+		        ForegroundColor = new SolidColorBrush(popupSettings.ForegroundColor),
+		        BorderSize = new Thickness(2),
+		        ControllerName = $"Controller {Strings.ControllerIndex_One}",
+		        BatteryLevel = $"Battery Level: {Strings.BatteryLevel_Medium}",
+		        FontSize = popupSettings.FontSize,
+	        };
+
+	        var viewModel = new BatteryPopupSettingsViewModel() { CurrentPopup = currentPopup };
+	        ViewModelBinder.Bind(viewModel, popupSettingsView, null);
+	        popupSettingsView.ShowDialog();
         }
     }
     //this enabled using the values stored in the settings file to be used in XAML
