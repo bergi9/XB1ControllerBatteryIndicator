@@ -52,6 +52,9 @@
             &lt;ForegroundColor&gt;#FFF8F8FF&lt;/ForegroundColor&gt;
             &lt;FontSize&gt;20&lt;/FontSize&gt;
             &lt;FontName&gt;Segoe UI&lt;/FontName&gt;
+            &lt;FontBold&gt;False&lt;/FontBold&gt;
+            &lt;FontItalic&gt;False&lt;/FontItalic&gt;
+            &lt;FontUnderline&gt;False&lt;/FontUnderline&gt;
           &lt;/SimpleBatteryPopupSettings&gt;
         </Value>
     </Setting>

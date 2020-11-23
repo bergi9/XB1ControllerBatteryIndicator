@@ -182,6 +182,9 @@ namespace XB1ControllerBatteryIndicator.Properties {
             <ForegroundColor>#FFF8F8FF</ForegroundColor>
             <FontSize>20</FontSize>
             <FontName>Segoe UI</FontName>
+            <FontBold>False</FontBold>
+            <FontItalic>False</FontItalic>
+            <FontUnderline>False</FontUnderline>
           </SimpleBatteryPopupSettings>
         ")]
         public global::XB1ControllerBatteryIndicator.BatteryPopup.SimpleBatteryPopupSettings PopupSettings {
