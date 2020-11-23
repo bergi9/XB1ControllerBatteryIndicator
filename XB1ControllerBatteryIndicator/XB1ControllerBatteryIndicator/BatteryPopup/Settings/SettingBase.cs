@@ -25,7 +25,7 @@ namespace XB1ControllerBatteryIndicator.BatteryPopup.Settings
 		protected SettingBase(string caption, T value)
 		{
 			Caption = caption;
-			Value = value;
+			_value = value;
 		}
 
 		public override void NotifyOfPropertyChange(string propertyName = null)
@@ -33,12 +33,22 @@ namespace XB1ControllerBatteryIndicator.BatteryPopup.Settings
 			base.NotifyOfPropertyChange(propertyName);
 
 			if (propertyName == nameof(Value))
+			{
+				if (!ValidateValue())
+					return;
+
 				OnValueChanged();
+			}
 		}
 
 		protected virtual void OnValueChanged()
 		{
 			ValueChanged?.Invoke(this, EventArgs.Empty);
+		}
+
+		protected virtual bool ValidateValue()
+		{
+			return true;
 		}
 	}
 }

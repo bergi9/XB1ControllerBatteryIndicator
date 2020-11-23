@@ -17,6 +17,23 @@
 		{
 		}
 
+		protected override bool ValidateValue()
+		{
+			if (Value > MaxValue)
+			{
+				Value = MaxValue;
+				return false;
+			}
+
+			if (Value < MinValue)
+			{
+				Value = MinValue;
+				return false;
+			}
+
+			return true;
+		}
+
 		public int MinValue
 		{
 			get => _minValue;
