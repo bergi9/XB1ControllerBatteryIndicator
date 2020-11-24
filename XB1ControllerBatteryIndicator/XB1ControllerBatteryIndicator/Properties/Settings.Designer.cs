@@ -169,24 +169,25 @@ namespace XB1ControllerBatteryIndicator.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute(@"
-          <SimpleBatteryPopupSettings xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xmlns:xsd=""http://www.w3.org/2001/XMLSchema"">
-            <Size>
-              <Width>300</Width>
-              <Height>60</Height>
-            </Size>
-            <X>0.5</X>
-            <Y>0.8</Y>
-            <DisplayDuration>0:00:03</DisplayDuration>
-            <BackgroundColor>#FFA9A9A9</BackgroundColor>
-            <ForegroundColor>#FFF8F8FF</ForegroundColor>
-            <FontSize>20</FontSize>
-            <FontName>Segoe UI</FontName>
-            <FontBold>False</FontBold>
-            <FontItalic>False</FontItalic>
-            <FontUnderline>False</FontUnderline>
-          </SimpleBatteryPopupSettings>
-        ")]
+        [global::System.Configuration.DefaultSettingValueAttribute(@"<?xml version=""1.0"" encoding=""utf-16""?>
+<SimpleBatteryPopupSettings xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xmlns:xsd=""http://www.w3.org/2001/XMLSchema"">
+  <Size>
+    <Width>300</Width>
+    <Height>60</Height>
+  </Size>
+  <X>0.5</X>
+  <AlignmentX>Left</AlignmentX>
+  <Y>0.8</Y>
+  <AlignmentY>Top</AlignmentY>
+  <DisplayDuration>0:00:03</DisplayDuration>
+  <BackgroundColor>#FFA9A9A9</BackgroundColor>
+  <ForegroundColor>#FFF8F8FF</ForegroundColor>
+  <FontSize>20</FontSize>
+  <FontName>Segoe UI</FontName>
+  <FontBold>false</FontBold>
+  <FontItalic>false</FontItalic>
+  <FontUnderline>false</FontUnderline>
+</SimpleBatteryPopupSettings>")]
         public global::XB1ControllerBatteryIndicator.BatteryPopup.SimpleBatteryPopupSettings PopupSettings {
             get {
                 return ((global::XB1ControllerBatteryIndicator.BatteryPopup.SimpleBatteryPopupSettings)(this["PopupSettings"]));
