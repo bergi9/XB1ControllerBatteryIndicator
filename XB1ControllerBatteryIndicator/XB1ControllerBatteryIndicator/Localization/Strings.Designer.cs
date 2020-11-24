@@ -160,7 +160,7 @@ namespace XB1ControllerBatteryIndicator.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Show Popup on Guide.
+        ///   Looks up a localized string similar to Show Popup on pressing XBox button.
         /// </summary>
         public static string ContextMenu_ShowPopupOnGuide {
             get {
@@ -426,6 +426,15 @@ namespace XB1ControllerBatteryIndicator.Localization {
         public static string PopupSettings_Time {
             get {
                 return ResourceManager.GetString("PopupSettings_Time", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Battery Level Popup Settings.
+        /// </summary>
+        public static string PopupSettings_Title {
+            get {
+                return ResourceManager.GetString("PopupSettings_Title", resourceCulture);
             }
         }
         

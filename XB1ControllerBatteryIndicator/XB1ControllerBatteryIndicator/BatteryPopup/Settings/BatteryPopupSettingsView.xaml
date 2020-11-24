@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:XB1ControllerBatteryIndicator.BatteryPopup.Settings"
         xmlns:localization="clr-namespace:XB1ControllerBatteryIndicator.Localization"
         mc:Ignorable="d"
-        Title="Battery Popup Settings"
+        Title="{x:Static localization:Strings.PopupSettings_Title}"
         Height="400" Width="350"
         ResizeMode="NoResize"
         SizeToContent="Height"

@@ -276,4 +276,7 @@
   <data name="PopupSettings_FontUnderline" xml:space="preserve">
     <value>Underline:</value>
   </data>
+  <data name="PopupSettings_Title" xml:space="preserve">
+    <value>Battery Level Popup Settings</value>
+  </data>
 </root>
