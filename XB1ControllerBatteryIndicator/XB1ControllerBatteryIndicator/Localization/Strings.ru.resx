@@ -244,7 +244,7 @@
     <value>Настройки всплывающего окна...</value>
   </data>
   <data name="ContextMenu_ShowPopupOnGuide" xml:space="preserve">
-    <value>Показывать всплывающее окно при нажатии Гайд</value>
+    <value>Показывать всплывающее окно при нажатии кнопки XBox</value>
   </data>
   <data name="ContextMenu_ShowPopupOnLowBattery" xml:space="preserve">
     <value>Показывать всплыкающее окно при низком заряде</value>

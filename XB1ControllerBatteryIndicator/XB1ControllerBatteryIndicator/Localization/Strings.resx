@@ -256,7 +256,7 @@
     <value>Popup Settings...</value>
   </data>
   <data name="ContextMenu_ShowPopupOnGuide" xml:space="preserve">
-    <value>Show Popup on Guide</value>
+    <value>Show Popup on pressing XBox button</value>
   </data>
   <data name="ContextMenu_ShowPopupOnLowBattery" xml:space="preserve">
     <value>Show Popup on low battery</value>
