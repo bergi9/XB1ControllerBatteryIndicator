@@ -195,4 +195,10 @@
   <data name="ContextMenu_LowBatteryWarningSound_Loop_Enabled" xml:space="preserve">
     <value>Вввімкнути повторення</value>
   </data>
+  <data name="Popup_ControllerName" xml:space="preserve">
+    <value>Контролер {0}</value>
+  </data>
+  <data name="Popup_BatteryLevel" xml:space="preserve">
+    <value>Рівень заряду: {0}</value>
+  </data>
 </root>
