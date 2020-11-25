@@ -195,6 +195,90 @@
   <data name="ContextMenu_LowBatteryWarningSound_Loop_Enabled" xml:space="preserve">
     <value>Repeat on loop</value>
   </data>
+  <data name="PopupSettings_Background" xml:space="preserve">
+    <value>Background:</value>
+  </data>
+  <data name="PopupSettings_Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="PopupSettings_Colors" xml:space="preserve">
+    <value>Colors</value>
+  </data>
+  <data name="PopupSettings_DisplayDuration" xml:space="preserve">
+    <value>Display:</value>
+  </data>
+  <data name="PopupSettings_Font" xml:space="preserve">
+    <value>Font</value>
+  </data>
+  <data name="PopupSettings_FontSize" xml:space="preserve">
+    <value>Size:</value>
+  </data>
+  <data name="PopupSettings_Foreground" xml:space="preserve">
+    <value>Foreground:</value>
+  </data>
+  <data name="PopupSettings_Height" xml:space="preserve">
+    <value>Height:</value>
+  </data>
+  <data name="PopupSettings_Percent" xml:space="preserve">
+    <value>%</value>
+  </data>
+  <data name="PopupSettings_Pixel" xml:space="preserve">
+    <value>px</value>
+  </data>
+  <data name="PopupSettings_Positioning" xml:space="preserve">
+    <value>Positioning</value>
+  </data>
+  <data name="PopupSettings_Save" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="PopupSettings_Seconds" xml:space="preserve">
+    <value>sec</value>
+  </data>
+  <data name="PopupSettings_Time" xml:space="preserve">
+    <value>Time</value>
+  </data>
+  <data name="PopupSettings_Width" xml:space="preserve">
+    <value>Width:</value>
+  </data>
+  <data name="PopupSettings_X" xml:space="preserve">
+    <value>X:</value>
+  </data>
+  <data name="PopupSettings_Y" xml:space="preserve">
+    <value>Y:</value>
+  </data>
+  <data name="Popup_BatteryLevel" xml:space="preserve">
+    <value>Battery level: {0}</value>
+  </data>
+  <data name="Popup_ControllerName" xml:space="preserve">
+    <value>Controller {0}</value>
+  </data>
+  <data name="ContextMenu_PopupSettings" xml:space="preserve">
+    <value>Popup Settings...</value>
+  </data>
+  <data name="ContextMenu_ShowPopupOnGuide" xml:space="preserve">
+    <value>Show Popup on pressing XBox button</value>
+  </data>
+  <data name="ContextMenu_ShowPopupOnLowBattery" xml:space="preserve">
+    <value>Show Popup on low battery</value>
+  </data>
+  <data name="ContextMenu_ShowToastOnLowBattery" xml:space="preserve">
+    <value>Show Toast on low battery</value>
+  </data>
+  <data name="PopupSettings_FontName" xml:space="preserve">
+    <value>Name:</value>
+  </data>
+  <data name="PopupSettings_FontBold" xml:space="preserve">
+    <value>Bold:</value>
+  </data>
+  <data name="PopupSettings_FontItalic" xml:space="preserve">
+    <value>Italic:</value>
+  </data>
+  <data name="PopupSettings_FontUnderline" xml:space="preserve">
+    <value>Underline:</value>
+  </data>
+  <data name="PopupSettings_Title" xml:space="preserve">
+    <value>Battery Level Popup Settings</value>
+  </data>
   <data name="ContextMenu_MinorUpdateCheck" xml:space="preserve">
     <value>Also check for minor updates (new languages added)</value>
   </data>

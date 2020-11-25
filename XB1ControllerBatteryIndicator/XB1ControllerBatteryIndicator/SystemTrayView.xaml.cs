@@ -4,8 +4,13 @@ using System;
 using System.Diagnostics;
 using System.Globalization;
 using System.Windows.Data;
+using System.Windows.Media;
 using System.Xml;
+using Caliburn.Micro;
+using XB1ControllerBatteryIndicator.BatteryPopup;
+using XB1ControllerBatteryIndicator.BatteryPopup.Settings;
 using XB1ControllerBatteryIndicator.Localization;
+using XB1ControllerBatteryIndicator.Properties;
 
 namespace XB1ControllerBatteryIndicator
 {
@@ -14,12 +19,12 @@ namespace XB1ControllerBatteryIndicator
     /// </summary>
     public partial class SystemTrayView : Window
     {
-        private SystemTrayViewModel ViewModel => DataContext as SystemTrayViewModel;
+	    private SystemTrayViewModel ViewModel => DataContext as SystemTrayViewModel;
 
         public SystemTrayView()
         {
-            InitializeComponent();
-            CheckForUpdate();
+	        InitializeComponent();
+	        CheckForUpdate();
             this.ShowInTaskbar = false;
 
             var language = new CultureInfo(Properties.Settings.Default.Language);
@@ -225,6 +230,64 @@ namespace XB1ControllerBatteryIndicator
 
             Properties.Settings.Default.Language = selectedLanguage.Name;
             Properties.Settings.Default.Save();
+        }
+
+        private void PopupSettings_OnClick(object sender, RoutedEventArgs e)
+        {
+            var popupSettingsView = new BatteryPopupSettingsView();
+
+	        var currentPopup = new SimpleBatteryLevelPopupViewModel(Settings.Default.PopupSettings,
+		        string.Format(Strings.Popup_ControllerName, Strings.ControllerIndex_One),
+		        string.Format(Strings.Popup_BatteryLevel, Strings.BatteryLevel_Medium));
+
+	        var viewModel = new BatteryPopupSettingsViewModel() { CurrentPopup = currentPopup };
+	        ViewModelBinder.Bind(viewModel, popupSettingsView, null);
+	        popupSettingsView.ShowDialog();
+        }
+
+        private void ShowToastOnLowBattery_Click(object sender, RoutedEventArgs e)
+        {
+	        bool showToastOnLowBattery = !Settings.Default.LowBatteryToast_Enabled;
+	        if (showToastOnLowBattery == false)
+	        {
+		        Settings.Default.LowBatteryToast_Enabled = true;
+		        Settings.Default.Save();
+	        }
+	        else
+	        {
+		        Settings.Default.LowBatteryToast_Enabled = false;
+		        Settings.Default.Save();
+	        }
+        }
+
+        private void ShowPopupOnLowBattery_Click(object sender, RoutedEventArgs e)
+        {
+	        bool showPopupOnLowBattery = !Settings.Default.LowBatteryPopup_Enabled;
+	        if (showPopupOnLowBattery == false)
+	        {
+		        Settings.Default.LowBatteryPopup_Enabled = true;
+		        Settings.Default.Save();
+	        }
+	        else
+	        {
+		        Settings.Default.LowBatteryPopup_Enabled = false;
+		        Settings.Default.Save();
+	        }
+        }
+
+        private void ShowPopupOnGuide_Click(object sender, RoutedEventArgs e)
+        {
+	        bool showPopupOnGuide = !Settings.Default.GuidePressPopup_Enabled;
+	        if (showPopupOnGuide == false)
+	        {
+		        Settings.Default.GuidePressPopup_Enabled = true;
+		        Settings.Default.Save();
+	        }
+	        else
+	        {
+		        Settings.Default.GuidePressPopup_Enabled = false;
+		        Settings.Default.Save();
+	        }
         }
     }
     //this enabled using the values stored in the settings file to be used in XAML

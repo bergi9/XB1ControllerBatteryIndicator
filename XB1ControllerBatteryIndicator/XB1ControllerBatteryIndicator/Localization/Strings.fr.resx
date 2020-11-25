@@ -195,4 +195,10 @@
   <data name="ContextMenu_LowBatteryWarningSound_Loop_Enabled" xml:space="preserve">
     <value>Répéter en boucle</value>
   </data>
+  <data name="Popup_ControllerName" xml:space="preserve">
+    <value>Manette {0}</value>
+  </data>
+  <data name="Popup_BatteryLevel" xml:space="preserve">
+    <value>Niveau de la batterie : {0}</value>
+  </data>
 </root>

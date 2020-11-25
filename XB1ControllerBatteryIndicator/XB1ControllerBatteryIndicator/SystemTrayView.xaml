@@ -46,6 +46,8 @@
                     </Style>
                 </MenuItem.ItemContainerStyle>
             </MenuItem>
+            <Separator/>
+            <MenuItem Header="{my:Localization ContextMenu_ShowToastOnLowBattery}" IsCheckable="True" Click="ShowToastOnLowBattery_Click" IsChecked="{my:SettingBinding Path=LowBatteryToast_Enabled}"/>
             <MenuItem Header="{my:Localization ContextMenu_LowBatteryWarningSound}" IsCheckable="False" ItemsSource="{Binding Path=LowBatteryWarningSoundOptions}" DisplayMemberPath="DisplayName">
                 <MenuItem x:Name="LowBatteryWarningSound_Enabled" Header="{my:Localization ContextMenu_LowBatteryWarningSound_Enabled}" IsCheckable="True" Click="LowBatteryWarningSound_Enabled_Click" IsChecked="{my:SettingBinding Path=LowBatteryWarningSound_Enabled}" />
                 <MenuItem x:Name="LowBatteryWarningSound_Loop_Enabled" Header="{my:Localization ContextMenu_LowBatteryWarningSound_Loop_Enabled}" IsCheckable="True" Click="LowBatteryWarningSound_Loop_Enabled_Click" IsChecked="{my:SettingBinding Path=LowBatteryWarningSound_Loop_Enabled}" />
@@ -55,6 +57,10 @@
                 <MenuItem x:Name="ShowWirelessControllersWithUnknownBatteryLevel" Header="{my:Localization ContextMenu_ShowWirelessControllersWithUnknownBatteryLevel}" IsChecked="{my:SettingBinding Path=ShowWirelessControllersWithUnknownBatteryLevel}" IsCheckable="True" />
                 <MenuItem x:Name="ShowWiredControllers" Header="{my:Localization ContextMenu_ShowWiredControllers}" IsChecked="{my:SettingBinding Path=ShowWiredControllers}" IsCheckable="True" />
             </MenuItem>
+            <Separator/>
+            <MenuItem Header="{my:Localization ContextMenu_ShowPopupOnLowBattery}" IsCheckable="True" Click="ShowPopupOnLowBattery_Click" IsChecked="{my:SettingBinding LowBatteryPopup_Enabled}"/>
+            <MenuItem Header="{my:Localization ContextMenu_ShowPopupOnGuide}" IsCheckable="True" Click="ShowPopupOnGuide_Click" IsChecked="{my:SettingBinding GuidePressPopup_Enabled}"/>
+            <MenuItem Header="{my:Localization ContextMenu_PopupSettings}" Click="PopupSettings_OnClick"/>
             <Separator/>
             <MenuItem Header="{my:Localization ContextMenu_Exit}" cal:Message.Attach="ExitApplication" />
         </ContextMenu>

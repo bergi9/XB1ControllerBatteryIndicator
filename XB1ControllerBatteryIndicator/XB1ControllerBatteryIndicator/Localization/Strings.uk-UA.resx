@@ -117,88 +117,88 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="NewVersionAvailable_Title" xml:space="preserve">
-    <value>Nowa wersja dostępna</value>
-  </data>
-  <data name="NewVersionAvailable_Body" xml:space="preserve">
-    <value>Nowa wersja {0} jest dostępna. Czy chcesz otworzyć stronę programu?</value>
-  </data>
-  <data name="ContextMenu_AutoStart" xml:space="preserve">
-    <value>Uruchamiaj razem z systemem</value>
-  </data>
-  <data name="ContextMenu_Exit" xml:space="preserve">
-    <value>Zamknij</value>
-  </data>
-  <data name="ContextMenu_UpdateCheck" xml:space="preserve">
-    <value>Sprawdzaj dostępność aktualizacji</value>
-  </data>
-  <data name="ToolTip_NoController" xml:space="preserve">
-    <value>Nie wykryto kontrolera</value>
-  </data>
-  <data name="ToolTip_WaitingForData" xml:space="preserve">
-    <value>Kontroler {0} - oczekiwanie na stan baterii...</value>
-  </data>
-  <data name="ToolTip_Unknown" xml:space="preserve">
-    <value>Kontroler {0} - brak danych</value>
-  </data>
-  <data name="ToolTip_Wired" xml:space="preserve">
-    <value>Kontroler {0} - podłączono przewodowo</value>
-  </data>
-  <data name="ToolTip_Wireless" xml:space="preserve">
-    <value>Kontroler {0} - Stan baterii: {1}</value>
-  </data>
-  <data name="Toast_Title" xml:space="preserve">
-    <value>Kontroler {0} - niski stan baterii</value>
-  </data>
-  <data name="Toast_Text" xml:space="preserve">
-    <value>Bateria w kontrolerze {0} jest (prawie) rozładowana.</value>
-  </data>
-  <data name="Toast_Text2" xml:space="preserve">
-    <value>(Kliknij, by nie wyświetlać więcej tego ostrzeżenia.)</value>
-  </data>
-  <data name="Toast_Dismiss" xml:space="preserve">
-    <value>Ukryj</value>
-  </data>
   <data name="BatteryLevel_Empty" xml:space="preserve">
-    <value>Rozładowana</value>
+    <value>Розряджено</value>
   </data>
   <data name="BatteryLevel_Full" xml:space="preserve">
-    <value>Naładowana</value>
+    <value>Повний</value>
   </data>
   <data name="BatteryLevel_Low" xml:space="preserve">
-    <value>Niski</value>
+    <value>Низький</value>
   </data>
   <data name="BatteryLevel_Medium" xml:space="preserve">
-    <value>Średni</value>
+    <value>Середній</value>
   </data>
-  <data name="ControllerIndex_Four" xml:space="preserve">
-    <value>Czwarty</value>
+  <data name="ContextMenu_AutoStart" xml:space="preserve">
+    <value>Запускати разом з Windows</value>
   </data>
-  <data name="ControllerIndex_One" xml:space="preserve">
-    <value>Pierwszy</value>
-  </data>
-  <data name="ControllerIndex_Three" xml:space="preserve">
-    <value>Trzeci</value>
-  </data>
-  <data name="ControllerIndex_Two" xml:space="preserve">
-    <value>Drugi</value>
+  <data name="ContextMenu_Exit" xml:space="preserve">
+    <value>Закрити</value>
   </data>
   <data name="ContextMenu_Language" xml:space="preserve">
-    <value>Język</value>
+    <value>Мова</value>
   </data>
-  <data name="ContextMenu_LowBatteryWarningSound" xml:space="preserve">
-    <value>Ostrzeżenie dźwiękowe o rozładowanej baterii</value>
+  <data name="ContextMenu_UpdateCheck" xml:space="preserve">
+    <value>Перевіряти наявність оновлень при запуску</value>
+  </data>
+  <data name="ControllerIndex_Four" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="ControllerIndex_One" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="ControllerIndex_Three" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="ControllerIndex_Two" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="NewVersionAvailable_Body" xml:space="preserve">
+    <value>Доступна нова версія {0}. Перейти на домашню сторінку?</value>
+  </data>
+  <data name="NewVersionAvailable_Title" xml:space="preserve">
+    <value>Доступна нова версія</value>
+  </data>
+  <data name="Toast_Dismiss" xml:space="preserve">
+    <value>Більше не оповіщати</value>
+  </data>
+  <data name="Toast_Text" xml:space="preserve">
+    <value>Контролер {0} (майже) розряджений.</value>
+  </data>
+  <data name="Toast_Text2" xml:space="preserve">
+    <value>(Натисніть на кнопку, щоб оповіщення більше не з'являлося)</value>
+  </data>
+  <data name="Toast_Title" xml:space="preserve">
+    <value>Контролер {0} - низький рівень заряду</value>
+  </data>
+  <data name="ToolTip_NoController" xml:space="preserve">
+    <value>Контролер не виявлено</value>
+  </data>
+  <data name="ToolTip_Unknown" xml:space="preserve">
+    <value>Контролер {0} - Не підтримується</value>
+  </data>
+  <data name="ToolTip_WaitingForData" xml:space="preserve">
+    <value>Контролер {0} - Знайдено, отримання рівня заряду...</value>
+  </data>
+  <data name="ToolTip_Wired" xml:space="preserve">
+    <value>Контролер {0} - Провідний</value>
+  </data>
+  <data name="ToolTip_Wireless" xml:space="preserve">
+    <value>Контролер {0} - Рівень заряду: {1}</value>
   </data>
   <data name="ContextMenu_LowBatteryWarningSound_Enabled" xml:space="preserve">
-    <value>Włączone</value>
+    <value>Ввімкнено</value>
+  </data>
+  <data name="ContextMenu_LowBatteryWarningSound" xml:space="preserve">
+    <value>Звукове попередження про розрядження</value>
   </data>
   <data name="ContextMenu_LowBatteryWarningSound_Loop_Enabled" xml:space="preserve">
-    <value>Powtarzaj</value>
+    <value>Вввімкнути повторення</value>
   </data>
   <data name="Popup_ControllerName" xml:space="preserve">
-    <value>Kontroler {0}</value>
+    <value>Контролер {0}</value>
   </data>
   <data name="Popup_BatteryLevel" xml:space="preserve">
-    <value>Stan baterii: {0}</value>
+    <value>Рівень заряду: {0}</value>
   </data>
 </root>

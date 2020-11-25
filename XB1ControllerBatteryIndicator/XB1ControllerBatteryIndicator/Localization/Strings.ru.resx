@@ -190,9 +190,81 @@
     <value>Включено</value>
   </data>
   <data name="ContextMenu_LowBatteryWarningSound" xml:space="preserve">
-    <value>Звуковое предупреждение о разрядке</value>
+    <value>Звуковое предупреждение при низком заряде</value>
   </data>
   <data name="ContextMenu_LowBatteryWarningSound_Loop_Enabled" xml:space="preserve">
     <value>Включить повторение</value>
+  </data>
+  <data name="PopupSettings_Background" xml:space="preserve">
+    <value>Фон:</value>
+  </data>
+  <data name="PopupSettings_Cancel" xml:space="preserve">
+    <value>Отмена</value>
+  </data>
+  <data name="PopupSettings_Colors" xml:space="preserve">
+    <value>Цвета</value>
+  </data>
+  <data name="PopupSettings_DisplayDuration" xml:space="preserve">
+    <value>Отображение:</value>
+  </data>
+  <data name="PopupSettings_Font" xml:space="preserve">
+    <value>Шрифт</value>
+  </data>
+  <data name="PopupSettings_FontSize" xml:space="preserve">
+    <value>Размер:</value>
+  </data>
+  <data name="PopupSettings_Foreground" xml:space="preserve">
+    <value>Основной:</value>
+  </data>
+  <data name="PopupSettings_Height" xml:space="preserve">
+    <value>Высота:</value>
+  </data>
+  <data name="PopupSettings_Positioning" xml:space="preserve">
+    <value>Позиционирование</value>
+  </data>
+  <data name="PopupSettings_Save" xml:space="preserve">
+    <value>Сохранить</value>
+  </data>
+  <data name="PopupSettings_Seconds" xml:space="preserve">
+    <value>сек</value>
+  </data>
+  <data name="PopupSettings_Time" xml:space="preserve">
+    <value>Время</value>
+  </data>
+  <data name="PopupSettings_Width" xml:space="preserve">
+    <value>Ширина:</value>
+  </data>
+  <data name="Popup_BatteryLevel" xml:space="preserve">
+    <value>Уровень заряда: {0}</value>
+  </data>
+  <data name="Popup_ControllerName" xml:space="preserve">
+    <value>Контроллер {0}</value>
+  </data>
+  <data name="ContextMenu_PopupSettings" xml:space="preserve">
+    <value>Настройки всплывающего окна...</value>
+  </data>
+  <data name="ContextMenu_ShowPopupOnGuide" xml:space="preserve">
+    <value>Показывать всплывающее окно при нажатии кнопки XBox</value>
+  </data>
+  <data name="ContextMenu_ShowPopupOnLowBattery" xml:space="preserve">
+    <value>Показывать всплыкающее окно при низком заряде</value>
+  </data>
+  <data name="ContextMenu_ShowToastOnLowBattery" xml:space="preserve">
+    <value>Показывать уведомление при низком заряде</value>
+  </data>
+  <data name="PopupSettings_FontName" xml:space="preserve">
+    <value>Имя:</value>
+  </data>
+  <data name="PopupSettings_FontBold" xml:space="preserve">
+    <value>Жирный:</value>
+  </data>
+  <data name="PopupSettings_FontItalic" xml:space="preserve">
+    <value>Курсив:</value>
+  </data>
+  <data name="PopupSettings_FontUnderline" xml:space="preserve">
+    <value>Подчеркнутый:</value>
+  </data>
+  <data name="PopupSettings_Title" xml:space="preserve">
+    <value>Настройки всплывающего окна уровня заряда</value>
   </data>
 </root>
