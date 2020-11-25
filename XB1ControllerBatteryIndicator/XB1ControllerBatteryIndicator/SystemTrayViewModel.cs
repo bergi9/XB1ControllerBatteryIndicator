@@ -383,7 +383,7 @@ namespace XB1ControllerBatteryIndicator
 			if (!Settings.Default.GuidePressPopup_Enabled)
 				return;
 
-			foreach (var controller in _controllers.Where(controller => controller.IsConnected))
+			foreach (var controller in _controllers)
 			{
 				if (XInputWrapper.IsGuidePressed(controller.UserIndex))
 				{

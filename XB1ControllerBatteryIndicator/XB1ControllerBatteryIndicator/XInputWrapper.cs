@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 using SharpDX.XInput;
 
 namespace XB1ControllerBatteryIndicator
@@ -15,11 +11,28 @@ namespace XB1ControllerBatteryIndicator
 		[DllImport("xinput1_3.dll", CallingConvention = CallingConvention.StdCall, EntryPoint = "#100")]
 		private static extern int XInputGetStateEx(int controllerIndex, out State state);
 
+		private static readonly Dictionary<UserIndex, bool> GuideStates = new Dictionary<UserIndex, bool>()
+		{
+			{UserIndex.One, false}, {UserIndex.Two, false}, {UserIndex.Three, false}, {UserIndex.Four, false},
+			{UserIndex.Any, false}
+		};
+
 		public static bool IsGuidePressed(UserIndex controllerIndex)
 		{
 			State state;
-			if (XInputGetStateEx((int) controllerIndex, out state) == 0)
-				return ((ushort)state.Gamepad.Buttons & GuideGamepadButtonFlag) != 0;
+			var result = XInputGetStateEx((int) controllerIndex, out state);
+			if (result == 0)
+			{
+				var currentState = ((ushort) state.Gamepad.Buttons & GuideGamepadButtonFlag) != 0;
+				var previousState = GuideStates[controllerIndex];
+				GuideStates[controllerIndex] = currentState;
+				return previousState && !currentState;
+			}
+			if (result == 1167)
+			{
+				GuideStates[controllerIndex] = false;
+			}
+
 			return false;
 		}
 	}
