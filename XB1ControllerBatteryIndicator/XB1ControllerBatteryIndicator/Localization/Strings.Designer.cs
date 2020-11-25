@@ -106,6 +106,15 @@ namespace XB1ControllerBatteryIndicator.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Displayed icons.
+        /// </summary>
+        public static string ContextMenu_DisplayedIcons {
+            get {
+                return ResourceManager.GetString("ContextMenu_DisplayedIcons", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Exit.
         /// </summary>
         public static string ContextMenu_Exit {
@@ -187,11 +196,55 @@ namespace XB1ControllerBatteryIndicator.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Also check for minor updates (new languages added).
+        /// </summary>
+        public static string ContextMenu_MinorUpdateCheck {
+            get {
+                return ResourceManager.GetString("ContextMenu_MinorUpdateCheck", resourceCulture);
+            }
+        }
+        
+        ///   Looks up a localized string similar to Wired controllers.
+        /// </summary>
+        public static string ContextMenu_ShowWiredControllers {
+            get {
+                return ResourceManager.GetString("ContextMenu_ShowWiredControllers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wireless controllers battery level.
+        /// </summary>
+        public static string ContextMenu_ShowWirelessControllersWithKnownBatteryLevel {
+            get {
+                return ResourceManager.GetString("ContextMenu_ShowWirelessControllersWithKnownBatteryLevel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wireless controllers with unknown battery level.
+        /// </summary>
+        public static string ContextMenu_ShowWirelessControllersWithUnknownBatteryLevel {
+            get {
+                return ResourceManager.GetString("ContextMenu_ShowWirelessControllersWithUnknownBatteryLevel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Check for new version on start.
         /// </summary>
         public static string ContextMenu_UpdateCheck {
             get {
                 return ResourceManager.GetString("ContextMenu_UpdateCheck", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update check.
+        /// </summary>
+        public static string ContextMenu_UpdateCheckHeader {
+            get {
+                return ResourceManager.GetString("ContextMenu_UpdateCheckHeader", resourceCulture);
             }
         }
         
@@ -228,6 +281,15 @@ namespace XB1ControllerBatteryIndicator.Localization {
         public static string ControllerIndex_Two {
             get {
                 return ResourceManager.GetString("ControllerIndex_Two", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A new minor update for {0} is available. Do you want to open the homepage?.
+        /// </summary>
+        public static string NewMinorVersionAvailable_Body {
+            get {
+                return ResourceManager.GetString("NewMinorVersionAvailable_Body", resourceCulture);
             }
         }
         

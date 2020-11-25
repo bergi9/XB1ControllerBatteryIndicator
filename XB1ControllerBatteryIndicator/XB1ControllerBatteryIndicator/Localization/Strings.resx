@@ -279,4 +279,25 @@
   <data name="PopupSettings_Title" xml:space="preserve">
     <value>Battery Level Popup Settings</value>
   </data>
+  <data name="ContextMenu_MinorUpdateCheck" xml:space="preserve">
+    <value>Also check for minor updates (new languages added)</value>
+  </data>
+  <data name="ContextMenu_UpdateCheckHeader" xml:space="preserve">
+    <value>Update check</value>
+  </data>
+  <data name="NewMinorVersionAvailable_Body" xml:space="preserve">
+    <value>A new minor update for {0} is available. Do you want to open the homepage?</value>
+  </data>
+  <data name="ContextMenu_DisplayedIcons" xml:space="preserve">
+	<value>Displayed icons</value>
+  </data>
+  <data name="ContextMenu_ShowWirelessControllersWithKnownBatteryLevel" xml:space="preserve">
+    <value>Wireless controllers battery level</value>
+  </data>
+  <data name="ContextMenu_ShowWirelessControllersWithUnknownBatteryLevel" xml:space="preserve">
+    <value>Wireless controllers with unknown battery level</value>
+  </data>
+  <data name="ContextMenu_ShowWiredControllers" xml:space="preserve">
+    <value>Wired controllers</value>
+  </data>
 </root>
