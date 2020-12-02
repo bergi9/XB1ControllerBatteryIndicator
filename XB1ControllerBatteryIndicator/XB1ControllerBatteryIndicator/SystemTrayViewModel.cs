@@ -124,7 +124,7 @@ namespace XB1ControllerBatteryIndicator
                 foreach (var (controller, batteryInfo) in connectedControllers)
                 {
                     //check if toast was already triggered and battery is no longer empty...
-                    if (batteryInfo.BatteryLevel != BatteryLevel.Empty)
+                    if (batteryInfo.BatteryLevel != BatteryLevel.Empty && batteryInfo.BatteryType != BatteryType.Wired && batteryInfo.BatteryType != BatteryType.Disconnected)
                     {
                         if (toast_shown[numdict[$"{controller.UserIndex}"]] == true)
                         {
@@ -132,6 +132,8 @@ namespace XB1ControllerBatteryIndicator
                             toast_shown[numdict[$"{controller.UserIndex}"]] = false;
                             ToastNotificationManager.History.Remove($"Controller{controller.UserIndex}", "ControllerToast", APP_ID);
                         }
+
+                        _popupShown[controller.UserIndex] = new DateTime();
                     }
                 }
                 var shownControllers = connectedControllers.Where(connectedController =>
@@ -156,7 +158,7 @@ namespace XB1ControllerBatteryIndicator
                             break;
                     }
                     //when "empty" state is detected...
-                    if (batteryInfo.BatteryLevel == BatteryLevel.Empty)
+                    if (batteryInfo.BatteryLevel == BatteryLevel.Empty && batteryInfo.BatteryType != BatteryType.Wired && batteryInfo.BatteryType != BatteryType.Disconnected)
                     {
 	                    if (Settings.Default.LowBatteryToast_Enabled)
 	                    {
