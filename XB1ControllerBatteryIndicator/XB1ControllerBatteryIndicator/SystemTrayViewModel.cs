@@ -38,7 +38,7 @@ namespace XB1ControllerBatteryIndicator
 
 		private SoundPlayer _soundPlayer;
 
-		private readonly Controller[] _controllers = new[]
+		private readonly Controller[] _controllers =
 		{
 			new Controller(UserIndex.One), new Controller(UserIndex.Two), new Controller(UserIndex.Three),
 			new Controller(UserIndex.Four)
@@ -95,13 +95,7 @@ namespace XB1ControllerBatteryIndicator
 
             while(true)
             {
-                //Initialize controllers
-                var controllers = new[]
-                {
-                    new Controller(UserIndex.One), new Controller(UserIndex.Two), new Controller(UserIndex.Three),
-                    new Controller(UserIndex.Four)
-                };
-                var connectedControllers = controllers
+	            var connectedControllers = _controllers
                     .Where(controller => controller.IsConnected)
                     .Select(controller => (controller, battery: controller.GetBatteryInformation(BatteryDeviceType.Gamepad)));
                 TooltipText = string.Join("\n", connectedControllers.Select(controller =>
