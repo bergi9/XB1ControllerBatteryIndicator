@@ -411,21 +411,24 @@ namespace XB1ControllerBatteryIndicator
 			var batteryInfo = controller.GetBatteryInformation(BatteryDeviceType.Gamepad);
 			if (batteryInfo.BatteryType != BatteryType.Wired)
 			{
-				OnUIThread(() => ShowPopup(controller, batteryInfo));
+				ShowPopup(controller, batteryInfo);
 			}
 		}
 
 		private void ShowPopup(Controller controller, BatteryInformation batteryInformation)
 		{
-			if (_popup.IsOpen)
-				return;
+			OnUIThread(() =>
+			{
+				if (_popup.IsOpen)
+					return;
 
-			var viewModel = new SimpleBatteryLevelPopupViewModel(Settings.Default.PopupSettings,
-				string.Format(Strings.Popup_ControllerName, GetControllerIndexCaption(controller.UserIndex)),
-				string.Format(Strings.Popup_BatteryLevel, GetBatteryLevelCaption(batteryInformation.BatteryLevel)));
-			_popup.DataContext = viewModel;
+				var viewModel = new SimpleBatteryLevelPopupViewModel(Settings.Default.PopupSettings,
+					string.Format(Strings.Popup_ControllerName, GetControllerIndexCaption(controller.UserIndex)),
+					string.Format(Strings.Popup_BatteryLevel, GetBatteryLevelCaption(batteryInformation.BatteryLevel)));
+				_popup.DataContext = viewModel;
 
-			_popup.IsOpen = true;
+				_popup.IsOpen = true;
+			});
 		}
 	}
 }
