@@ -46,6 +46,12 @@ namespace XB1ControllerBatteryIndicator
 
 		private readonly Popup _popup = new BatteryLevelPopupView();
 
+		private readonly Dictionary<UserIndex, DateTime> _popupShown = new Dictionary<UserIndex, DateTime>()
+		{
+			{UserIndex.One, new DateTime()}, {UserIndex.Two, new DateTime()}, {UserIndex.Three, new DateTime()},
+			{UserIndex.Four, new DateTime()}
+		};
+
 		public SystemTrayViewModel()
 		{
 			GetAvailableLanguages();
@@ -183,7 +189,13 @@ namespace XB1ControllerBatteryIndicator
 
                         if (Settings.Default.LowBatteryPopup_Enabled)
                         {
-	                        ShowPopup(currentController, batteryInfo);
+	                        var lastShownTime = _popupShown[currentController.UserIndex];
+	                        var currentTime = DateTime.Now;
+	                        if (currentTime - lastShownTime > TimeSpan.FromMinutes(5))
+	                        {
+								_popupShown[currentController.UserIndex] = currentTime;
+		                        ShowPopup(currentController, batteryInfo);
+							}
                         }
 					}
                     Thread.Sleep(5000);
