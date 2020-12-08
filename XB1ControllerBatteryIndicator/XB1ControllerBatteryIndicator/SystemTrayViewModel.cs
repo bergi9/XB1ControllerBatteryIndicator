@@ -38,13 +38,19 @@ namespace XB1ControllerBatteryIndicator
 
 		private SoundPlayer _soundPlayer;
 
-		private readonly Controller[] _controllers = new[]
+		private readonly Controller[] _controllers =
 		{
 			new Controller(UserIndex.One), new Controller(UserIndex.Two), new Controller(UserIndex.Three),
 			new Controller(UserIndex.Four)
 		};
 
 		private readonly Popup _popup = new BatteryLevelPopupView();
+
+		private readonly Dictionary<UserIndex, DateTime> _popupShown = new Dictionary<UserIndex, DateTime>()
+		{
+			{UserIndex.One, new DateTime()}, {UserIndex.Two, new DateTime()}, {UserIndex.Three, new DateTime()},
+			{UserIndex.Four, new DateTime()}
+		};
 
 		public SystemTrayViewModel()
 		{
@@ -89,13 +95,7 @@ namespace XB1ControllerBatteryIndicator
 
             while(true)
             {
-                //Initialize controllers
-                var controllers = new[]
-                {
-                    new Controller(UserIndex.One), new Controller(UserIndex.Two), new Controller(UserIndex.Three),
-                    new Controller(UserIndex.Four)
-                };
-                var connectedControllers = controllers
+	            var connectedControllers = _controllers
                     .Where(controller => controller.IsConnected)
                     .Select(controller => (controller, battery: controller.GetBatteryInformation(BatteryDeviceType.Gamepad)));
                 TooltipText = string.Join("\n", connectedControllers.Select(controller =>
@@ -118,7 +118,7 @@ namespace XB1ControllerBatteryIndicator
                 foreach (var (controller, batteryInfo) in connectedControllers)
                 {
                     //check if toast was already triggered and battery is no longer empty...
-                    if (batteryInfo.BatteryLevel != BatteryLevel.Empty)
+                    if (batteryInfo.BatteryLevel != BatteryLevel.Empty && batteryInfo.BatteryType != BatteryType.Wired && batteryInfo.BatteryType != BatteryType.Disconnected)
                     {
                         if (toast_shown[numdict[$"{controller.UserIndex}"]] == true)
                         {
@@ -126,6 +126,8 @@ namespace XB1ControllerBatteryIndicator
                             toast_shown[numdict[$"{controller.UserIndex}"]] = false;
                             ToastNotificationManager.History.Remove($"Controller{controller.UserIndex}", "ControllerToast", APP_ID);
                         }
+
+                        _popupShown[controller.UserIndex] = new DateTime();
                     }
                 }
                 var shownControllers = connectedControllers.Where(connectedController =>
@@ -150,7 +152,7 @@ namespace XB1ControllerBatteryIndicator
                             break;
                     }
                     //when "empty" state is detected...
-                    if (batteryInfo.BatteryLevel == BatteryLevel.Empty)
+                    if (batteryInfo.BatteryLevel == BatteryLevel.Empty && batteryInfo.BatteryType != BatteryType.Wired && batteryInfo.BatteryType != BatteryType.Disconnected)
                     {
 	                    if (Settings.Default.LowBatteryToast_Enabled)
 	                    {
@@ -183,7 +185,13 @@ namespace XB1ControllerBatteryIndicator
 
                         if (Settings.Default.LowBatteryPopup_Enabled)
                         {
-	                        ShowPopup(currentController, batteryInfo);
+	                        var lastShownTime = _popupShown[currentController.UserIndex];
+	                        var currentTime = DateTime.Now;
+	                        if (currentTime - lastShownTime > TimeSpan.FromMinutes(5))
+	                        {
+								_popupShown[currentController.UserIndex] = currentTime;
+		                        ShowPopup(currentController, batteryInfo);
+							}
                         }
 					}
                     Thread.Sleep(5000);
@@ -411,21 +419,24 @@ namespace XB1ControllerBatteryIndicator
 			var batteryInfo = controller.GetBatteryInformation(BatteryDeviceType.Gamepad);
 			if (batteryInfo.BatteryType != BatteryType.Wired)
 			{
-				OnUIThread(() => ShowPopup(controller, batteryInfo));
+				ShowPopup(controller, batteryInfo);
 			}
 		}
 
 		private void ShowPopup(Controller controller, BatteryInformation batteryInformation)
 		{
-			if (_popup.IsOpen)
-				return;
+			OnUIThread(() =>
+			{
+				if (_popup.IsOpen)
+					return;
 
-			var viewModel = new SimpleBatteryLevelPopupViewModel(Settings.Default.PopupSettings,
-				string.Format(Strings.Popup_ControllerName, GetControllerIndexCaption(controller.UserIndex)),
-				string.Format(Strings.Popup_BatteryLevel, GetBatteryLevelCaption(batteryInformation.BatteryLevel)));
-			_popup.DataContext = viewModel;
+				var viewModel = new SimpleBatteryLevelPopupViewModel(Settings.Default.PopupSettings,
+					string.Format(Strings.Popup_ControllerName, GetControllerIndexCaption(controller.UserIndex)),
+					string.Format(Strings.Popup_BatteryLevel, GetBatteryLevelCaption(batteryInformation.BatteryLevel)));
+				_popup.DataContext = viewModel;
 
-			_popup.IsOpen = true;
+				_popup.IsOpen = true;
+			});
 		}
 	}
 }

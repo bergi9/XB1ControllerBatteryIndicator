@@ -267,4 +267,25 @@
   <data name="PopupSettings_Title" xml:space="preserve">
     <value>Настройки всплывающего окна уровня заряда</value>
   </data>
+  <data name="ContextMenu_DisplayedIcons" xml:space="preserve">
+    <value>Отображаемые иконки</value>
+  </data>
+  <data name="ContextMenu_MinorUpdateCheck" xml:space="preserve">
+    <value>Проверять наличии незначительных обновлений (добавление языков)</value>
+  </data>
+  <data name="ContextMenu_ShowWiredControllers" xml:space="preserve">
+    <value>Проводной контроллер</value>
+  </data>
+  <data name="ContextMenu_ShowWirelessControllersWithKnownBatteryLevel" xml:space="preserve">
+    <value>Беспроводной контроллер с полученным уровнем заряда</value>
+  </data>
+  <data name="ContextMenu_ShowWirelessControllersWithUnknownBatteryLevel" xml:space="preserve">
+    <value>Беспроводной контроллен с неполученным уровнем заряда</value>
+  </data>
+  <data name="ContextMenu_UpdateCheckHeader" xml:space="preserve">
+    <value>Проверка обновлений</value>
+  </data>
+  <data name="NewMinorVersionAvailable_Body" xml:space="preserve">
+    <value>Доступно новое незначительное обновление (добавление языков) {0}. Перейти на домашнюю страницу?</value>
+  </data>
 </root>
