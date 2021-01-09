@@ -201,4 +201,106 @@
   <data name="Popup_ControllerName" xml:space="preserve">
     <value>Controller {0}</value>
   </data>
+  <data name="ContextMenu_DisplayedIcons" xml:space="preserve">
+    <value>Angezeigte Controller-Zustände</value>
+  </data>
+  <data name="ContextMenu_MinorUpdateCheck" xml:space="preserve">
+    <value>Auch kleine Updates (neue Sprachen) melden</value>
+  </data>
+  <data name="ContextMenu_Notifications" xml:space="preserve">
+    <value>Benachrichtigungen</value>
+  </data>
+  <data name="ContextMenu_PopupSettings" xml:space="preserve">
+    <value>Popup-Einstellungen...</value>
+  </data>
+  <data name="ContextMenu_ShowPopupOnGuide" xml:space="preserve">
+    <value>Popup anzeigen wenn XBox-Button gedrückt wird</value>
+  </data>
+  <data name="ContextMenu_ShowPopupOnLowBattery" xml:space="preserve">
+    <value>Popup bei niedrigem Batteriestand anzeigen</value>
+  </data>
+  <data name="ContextMenu_ShowToastOnLowBattery" xml:space="preserve">
+    <value>Toast bei niedrigem Batteriestand anzeigen</value>
+  </data>
+  <data name="ContextMenu_ShowWiredControllers" xml:space="preserve">
+    <value>Kabelgebundene Controller</value>
+  </data>
+  <data name="ContextMenu_ShowWirelessControllersWithKnownBatteryLevel" xml:space="preserve">
+    <value>Batteriestand von kabellosen Controllern</value>
+  </data>
+  <data name="ContextMenu_ShowWirelessControllersWithUnknownBatteryLevel" xml:space="preserve">
+    <value>Kabellose Controller mit unbekanntem Batteriestand</value>
+  </data>
+  <data name="ContextMenu_UpdateCheckHeader" xml:space="preserve">
+    <value>Update-Suche</value>
+  </data>
+  <data name="NewMinorVersionAvailable_Body" xml:space="preserve">
+    <value>Eine neue Version von {0} (kleines Update mit neuen Sprachen) ist verfügbar. Willst du die Homepage öffnen?</value>
+  </data>
+  <data name="PopupSettings_Background" xml:space="preserve">
+    <value>Hintergrund:</value>
+  </data>
+  <data name="PopupSettings_Cancel" xml:space="preserve">
+    <value>Abbrechen</value>
+  </data>
+  <data name="PopupSettings_Colors" xml:space="preserve">
+    <value>Farben</value>
+  </data>
+  <data name="PopupSettings_DisplayDuration" xml:space="preserve">
+    <value>Anzeigen für:</value>
+  </data>
+  <data name="PopupSettings_Font" xml:space="preserve">
+    <value>Schrift</value>
+  </data>
+  <data name="PopupSettings_FontBold" xml:space="preserve">
+    <value>Fett:</value>
+  </data>
+  <data name="PopupSettings_FontItalic" xml:space="preserve">
+    <value>Kursiv:</value>
+  </data>
+  <data name="PopupSettings_FontName" xml:space="preserve">
+    <value>Name:</value>
+  </data>
+  <data name="PopupSettings_FontSize" xml:space="preserve">
+    <value>Größe:</value>
+  </data>
+  <data name="PopupSettings_FontUnderline" xml:space="preserve">
+    <value>Unterstrichen:</value>
+  </data>
+  <data name="PopupSettings_Foreground" xml:space="preserve">
+    <value>Vordergrund:</value>
+  </data>
+  <data name="PopupSettings_Height" xml:space="preserve">
+    <value>Höhe:</value>
+  </data>
+  <data name="PopupSettings_Percent" xml:space="preserve">
+    <value>%</value>
+  </data>
+  <data name="PopupSettings_Pixel" xml:space="preserve">
+    <value>px</value>
+  </data>
+  <data name="PopupSettings_Positioning" xml:space="preserve">
+    <value>Position</value>
+  </data>
+  <data name="PopupSettings_Save" xml:space="preserve">
+    <value>Speichern</value>
+  </data>
+  <data name="PopupSettings_Seconds" xml:space="preserve">
+    <value>Sek</value>
+  </data>
+  <data name="PopupSettings_Time" xml:space="preserve">
+    <value>Anzeigedauer</value>
+  </data>
+  <data name="PopupSettings_Title" xml:space="preserve">
+    <value>Einstellungen für Popup</value>
+  </data>
+  <data name="PopupSettings_Width" xml:space="preserve">
+    <value>Breite:</value>
+  </data>
+  <data name="PopupSettings_X" xml:space="preserve">
+    <value>X:</value>
+  </data>
+  <data name="PopupSettings_Y" xml:space="preserve">
+    <value>Y:</value>
+  </data>
 </root>

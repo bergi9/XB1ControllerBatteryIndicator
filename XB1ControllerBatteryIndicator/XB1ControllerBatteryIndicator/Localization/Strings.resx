@@ -205,7 +205,7 @@
     <value>Colors</value>
   </data>
   <data name="PopupSettings_DisplayDuration" xml:space="preserve">
-    <value>Display:</value>
+    <value>Display for:</value>
   </data>
   <data name="PopupSettings_Font" xml:space="preserve">
     <value>Font</value>
@@ -286,10 +286,10 @@
     <value>Update check</value>
   </data>
   <data name="NewMinorVersionAvailable_Body" xml:space="preserve">
-    <value>A new minor update for {0} is available. Do you want to open the homepage?</value>
+    <value>A new minor update for {0} is available (new languages added). Do you want to open the homepage?</value>
   </data>
   <data name="ContextMenu_DisplayedIcons" xml:space="preserve">
-	<value>Displayed icons</value>
+    <value>Displayed Controller states</value>
   </data>
   <data name="ContextMenu_ShowWirelessControllersWithKnownBatteryLevel" xml:space="preserve">
     <value>Wireless controllers battery level</value>
@@ -299,5 +299,8 @@
   </data>
   <data name="ContextMenu_ShowWiredControllers" xml:space="preserve">
     <value>Wired controllers</value>
+  </data>
+  <data name="ContextMenu_Notifications" xml:space="preserve">
+    <value>Notifications</value>
   </data>
 </root>

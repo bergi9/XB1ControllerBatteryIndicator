@@ -106,7 +106,7 @@ namespace XB1ControllerBatteryIndicator.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Displayed icons.
+        ///   Looks up a localized string similar to Displayed Controller states.
         /// </summary>
         public static string ContextMenu_DisplayedIcons {
             get {
@@ -160,6 +160,24 @@ namespace XB1ControllerBatteryIndicator.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Also check for minor updates (new languages added).
+        /// </summary>
+        public static string ContextMenu_MinorUpdateCheck {
+            get {
+                return ResourceManager.GetString("ContextMenu_MinorUpdateCheck", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Notifications.
+        /// </summary>
+        public static string ContextMenu_Notifications {
+            get {
+                return ResourceManager.GetString("ContextMenu_Notifications", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Popup Settings....
         /// </summary>
         public static string ContextMenu_PopupSettings {
@@ -196,14 +214,6 @@ namespace XB1ControllerBatteryIndicator.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Also check for minor updates (new languages added).
-        /// </summary>
-        public static string ContextMenu_MinorUpdateCheck {
-            get {
-                return ResourceManager.GetString("ContextMenu_MinorUpdateCheck", resourceCulture);
-            }
-        }
-        
         ///   Looks up a localized string similar to Wired controllers.
         /// </summary>
         public static string ContextMenu_ShowWiredControllers {
@@ -285,7 +295,7 @@ namespace XB1ControllerBatteryIndicator.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to A new minor update for {0} is available. Do you want to open the homepage?.
+        ///   Looks up a localized string similar to A new minor update for {0} is available (new languages added). Do you want to open the homepage?.
         /// </summary>
         public static string NewMinorVersionAvailable_Body {
             get {
@@ -357,7 +367,7 @@ namespace XB1ControllerBatteryIndicator.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Display:.
+        ///   Looks up a localized string similar to Display for:.
         /// </summary>
         public static string PopupSettings_DisplayDuration {
             get {

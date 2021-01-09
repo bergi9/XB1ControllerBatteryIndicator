@@ -417,7 +417,7 @@ namespace XB1ControllerBatteryIndicator
 		private void ShowPopup(Controller controller)
 		{
 			var batteryInfo = controller.GetBatteryInformation(BatteryDeviceType.Gamepad);
-			if (batteryInfo.BatteryType != BatteryType.Wired)
+			if (batteryInfo.BatteryType != BatteryType.Wired && batteryInfo.BatteryType != BatteryType.Disconnected)
 			{
 				ShowPopup(controller, batteryInfo);
 			}
