@@ -3,7 +3,7 @@ A tray application that shows a battery indicator for an Xbox-ish controller and
 
 It was originally written for the XBox One controller since Microsoft dropped all visual hints for low battery, but it should work with any gamepad that can be addressed via XInput (which should be all controllers that work in XBox-controller-enabled games).
 
-**Download link for a "ready to run" version at the bottom of this page!**  
+**Download link for a "ready to run" version at the bottom of this page(or under "Releases" in the side bar)!**  
 (The green download button at the top is for the source code package)
 
 When more than one controller is present, the tray icon will cycle through the status display every 5 seconds.
@@ -16,13 +16,15 @@ When a controller reaches low battery level, a notification is displayed.
 
 
 Controllers reported as working/being recognized so far:
-* XBOne + dongle
-* XBOne Elite + dongle
+* XBox Series X/S + dongle
 * XBOne S + dongle 
 * XBOne S + Bluetooth
+* XBOne Elite + dongle
+* XBOne + dongle
 * XB360 
 
 Currently known issues/limitations:
+* Series X/S controllers connected via Bluetooth won't report any or a completely wrong battery level. This seems to be an issue with Microsofts BT implementation and I can't do anything about it. See Issue [#49](https://github.com/NiyaShy/XB1ControllerBatteryIndicator/issues/49) for details.
 * initial recognition of a newly connected controller can take a while. It will be displayed as "waiting for battery level data" at first but should switch to battery level after ~10 seconds and a button press. (This might be a limitation of the XInput API.)
 
 **[You can download the latest version here](https://github.com/NiyaShy/XB1ControllerBatteryIndicator/releases).**  
