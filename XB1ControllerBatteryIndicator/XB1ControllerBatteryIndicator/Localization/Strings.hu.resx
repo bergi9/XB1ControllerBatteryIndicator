@@ -121,7 +121,7 @@
     <value>Új verzió elérhető!</value>
   </data>
   <data name="NewVersionAvailable_Body" xml:space="preserve">
-    <value>Az új {0}-es verzió elérhető. Meg akarod nyitni a Weblapot?</value>
+    <value>Elérhető az új {0} verzió. Meg akarod nyitni a Weblapot?</value>
   </data>
   <data name="ContextMenu_AutoStart" xml:space="preserve">
     <value>Indítás a Rendszerrel együtt</value>
