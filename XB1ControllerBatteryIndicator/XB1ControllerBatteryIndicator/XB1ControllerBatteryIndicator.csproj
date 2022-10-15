@@ -239,6 +239,7 @@
       <LastGenOutput>Strings.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Localization\Strings.sv.resx" />
     <EmbeddedResource Include="Localization\Strings.uk-UA.resx" />
     <EmbeddedResource Include="Localization\Strings.ru.resx" />
     <EmbeddedResource Include="Localization\Strings.tr.resx" />
