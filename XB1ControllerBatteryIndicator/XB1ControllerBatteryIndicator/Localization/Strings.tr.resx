@@ -139,7 +139,7 @@
     <value>{0} Kontrolcü bağlı ve bilgi bekleniyor.</value>
   </data>
   <data name="ToolTip_Unknown" xml:space="preserve">
-    <value>Kontrolcü {0} tanınmıyor</value>
+    <value>Kontrolcü {0} bilinmiyor</value>
   </data>
   <data name="ToolTip_Wired" xml:space="preserve">
     <value>Kontrolcü {0} - Kablo ile bağlı</value>
