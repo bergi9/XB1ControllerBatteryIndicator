@@ -154,22 +154,22 @@
     <value>{0}. Kontrolcünün bataryası (neredeyse) boş.</value>
   </data>
   <data name="Toast_Text2" xml:space="preserve">
-    <value>(Uyarının tekrar gösterilmesini istemiyorsanız tuşa basın!)</value>
+    <value>(Uyarıyı tekrar görmemek için tuşa basın!)</value>
   </data>
   <data name="Toast_Dismiss" xml:space="preserve">
     <value>Yoksay</value>
   </data>
   <data name="BatteryLevel_Empty" xml:space="preserve">
-    <value>Batarya boş</value>
+    <value>Boş</value>
   </data>
   <data name="BatteryLevel_Full" xml:space="preserve">
-    <value>Batarya tamamen dolu</value>
+    <value>Tamamen dolu</value>
   </data>
   <data name="BatteryLevel_Low" xml:space="preserve">
-    <value>Batarya seviyesi düşük</value>
+    <value>Düşük</value>
   </data>
   <data name="BatteryLevel_Medium" xml:space="preserve">
-    <value>Batarya yarı dolu</value>
+    <value>Yarı dolu</value>
   </data>
   <data name="ControllerIndex_Four" xml:space="preserve">
     <value>Dört</value>
