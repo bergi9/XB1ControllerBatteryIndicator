@@ -118,13 +118,13 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="NewVersionAvailable_Title" xml:space="preserve">
-    <value>有可用的新版本</value>
+    <value>有新版本可用</value>
   </data>
   <data name="NewVersionAvailable_Body" xml:space="preserve">
     <value>新版本 {0} 已可供下載，你想要開啟下載頁面嗎？</value>
   </data>
   <data name="ContextMenu_AutoStart" xml:space="preserve">
-    <value>隨Windows開機啟動程式</value>
+    <value>開機自動啟動程式</value>
   </data>
   <data name="ContextMenu_Exit" xml:space="preserve">
     <value>結束程式</value>
@@ -195,10 +195,112 @@
   <data name="ContextMenu_LowBatteryWarningSound_Loop_Enabled" xml:space="preserve">
     <value>重複播放</value>
   </data>
-  <data name="Popup_ControllerName" xml:space="preserve">
-    <value>控制器 {0}</value>
+  <data name="PopupSettings_Background" xml:space="preserve">
+    <value>背景:</value>
+  </data>
+  <data name="PopupSettings_Cancel" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="PopupSettings_Colors" xml:space="preserve">
+    <value>顏色</value>
+  </data>
+  <data name="PopupSettings_DisplayDuration" xml:space="preserve">
+    <value>持續顯示:</value>
+  </data>
+  <data name="PopupSettings_Font" xml:space="preserve">
+    <value>字型</value>
+  </data>
+  <data name="PopupSettings_FontSize" xml:space="preserve">
+    <value>大小:</value>
+  </data>
+  <data name="PopupSettings_Foreground" xml:space="preserve">
+    <value>前景:</value>
+  </data>
+  <data name="PopupSettings_Height" xml:space="preserve">
+    <value>高度:</value>
+  </data>
+  <data name="PopupSettings_Percent" xml:space="preserve">
+    <value>%</value>
+  </data>
+  <data name="PopupSettings_Pixel" xml:space="preserve">
+    <value>px</value>
+  </data>
+  <data name="PopupSettings_Positioning" xml:space="preserve">
+    <value>位置</value>
+  </data>
+  <data name="PopupSettings_Save" xml:space="preserve">
+    <value>保存</value>
+  </data>
+  <data name="PopupSettings_Seconds" xml:space="preserve">
+    <value>秒</value>
+  </data>
+  <data name="PopupSettings_Time" xml:space="preserve">
+    <value>時間</value>
+  </data>
+  <data name="PopupSettings_Width" xml:space="preserve">
+    <value>寬度:</value>
+  </data>
+  <data name="PopupSettings_X" xml:space="preserve">
+    <value>X:</value>
+  </data>
+  <data name="PopupSettings_Y" xml:space="preserve">
+    <value>Y:</value>
   </data>
   <data name="Popup_BatteryLevel" xml:space="preserve">
     <value>電量: {0}</value>
+  </data>
+  <data name="Popup_ControllerName" xml:space="preserve">
+    <value>控制器 {0}</value>
+  </data>
+  <data name="ContextMenu_PopupSettings" xml:space="preserve">
+    <value>Overlay通知設定...</value>
+  </data>
+  <data name="ContextMenu_ShowPopupOnGuide" xml:space="preserve">
+    <value>按下XBox按紐時顯示Overlay通知</value>
+  </data>
+  <data name="ContextMenu_ShowPopupOnLowBattery" xml:space="preserve">
+    <value>低電量時顯示Overlay通知</value>
+  </data>
+  <data name="ContextMenu_ShowToastOnLowBattery" xml:space="preserve">
+    <value>低電量時顯示系統通知</value>
+  </data>
+  <data name="PopupSettings_FontName" xml:space="preserve">
+    <value>名稱:</value>
+  </data>
+  <data name="PopupSettings_FontBold" xml:space="preserve">
+    <value>粗體:</value>
+  </data>
+  <data name="PopupSettings_FontItalic" xml:space="preserve">
+    <value>斜體:</value>
+  </data>
+  <data name="PopupSettings_FontUnderline" xml:space="preserve">
+    <value>底線:</value>
+  </data>
+  <data name="PopupSettings_Title" xml:space="preserve">
+    <value>電池電量Overlay通知設定</value>
+  </data>
+  <data name="ContextMenu_MinorUpdateCheck" xml:space="preserve">
+    <value>是否檢查次要版本 (新增新語言時)</value>
+  </data>
+  <data name="ContextMenu_UpdateCheckHeader" xml:space="preserve">
+    <value>新版本檢查</value>
+  </data>
+  <data name="NewMinorVersionAvailable_Body" xml:space="preserve">
+    <value>新次要版本 {0} 已可供下載，你想要開啟下載頁面嗎？</value>
+  </data>
+  <data name="ContextMenu_DisplayedIcons" xml:space="preserve">
+    <value>顯示控制器狀態</value>
+  </data>
+  <data name="ContextMenu_ShowWirelessControllersWithKnownBatteryLevel" xml:space="preserve">
+    <value>無線控制器: 電池電量</value>
+  </data>
+  <data name="ContextMenu_ShowWirelessControllersWithUnknownBatteryLevel" xml:space="preserve">
+    <value>無線控制器: 未知電量</value>
+  </data>
+  <data name="ContextMenu_ShowWiredControllers" xml:space="preserve">
+    <value>有線控制器</value>
+  </data>
+  <data name="ContextMenu_Notifications" xml:space="preserve">
+    <value>通知</value>
   </data>
 </root>
