@@ -118,87 +118,81 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="NewVersionAvailable_Title" xml:space="preserve">
-    <value>Yeni versiyon mevcut!</value>
+    <value>最新バージョン発売</value>
   </data>
   <data name="NewVersionAvailable_Body" xml:space="preserve">
-    <value>Yeni bir versiyon {0} mevcut. Güncelleme sayfasına gitmek ister misiniz?</value>
+    <value>{0}の最新バージョンが存在します。 ホームページを開きましょうか？</value>
   </data>
   <data name="ContextMenu_AutoStart" xml:space="preserve">
-    <value>Programı Windows başlangıcında çalıştır</value>
+    <value>Windows起動時に自動開始</value>
   </data>
   <data name="ContextMenu_Exit" xml:space="preserve">
-    <value>Çıkış</value>
+    <value>終了</value>
   </data>
   <data name="ContextMenu_UpdateCheck" xml:space="preserve">
-    <value>Başlangıçta güncellemeleri sorgula</value>
+    <value>開始時の最新バージョンチェック</value>
   </data>
   <data name="ToolTip_NoController" xml:space="preserve">
-    <value>Kontrolcü bulunamadı!</value>
+    <value>コントローラが検出されない</value>
   </data>
   <data name="ToolTip_WaitingForData" xml:space="preserve">
-    <value>{0} Kontrolcü bağlı ve bilgi bekleniyor.</value>
+    <value>コントローラー {0} - 発見されたがバッテリー情報待機中...</value>
   </data>
   <data name="ToolTip_Unknown" xml:space="preserve">
-    <value>Kontrolcü {0} bilinmiyor</value>
+    <value>コントローラー {0} - 不明</value>
   </data>
   <data name="ToolTip_Wired" xml:space="preserve">
-    <value>Kontrolcü {0} - Kablo ile bağlı</value>
+    <value>コントローラー {0} - 有線</value>
   </data>
   <data name="ToolTip_Wireless" xml:space="preserve">
-    <value>Kontrolcü {0} batarya yüzdesi: {1}</value>
+    <value>コントローラー {0} - バッテリーレベル: {1}</value>
   </data>
   <data name="Toast_Title" xml:space="preserve">
-    <value>{0}. Kontrolcü düşük batarya uyarısı</value>
+    <value>コントローラー {0} バッテリー切れ警告</value>
   </data>
   <data name="Toast_Text" xml:space="preserve">
-    <value>{0}. Kontrolcünün bataryası (neredeyse) boş.</value>
+    <value>コントローラー バッテリー {0}はほぼ放電しています。</value>
   </data>
   <data name="Toast_Text2" xml:space="preserve">
-    <value>(Uyarıyı tekrar görmemek için tuşa basın!)</value>
+    <value>(この警告が再び表示されないように、このボタンをクリックしてください)</value>
   </data>
   <data name="Toast_Dismiss" xml:space="preserve">
-    <value>Yoksay</value>
+    <value>黙ってろ！</value>
   </data>
   <data name="BatteryLevel_Empty" xml:space="preserve">
-    <value>Boş</value>
+    <value>空</value>
   </data>
   <data name="BatteryLevel_Full" xml:space="preserve">
-    <value>Tamamen dolu</value>
+    <value>いっぱいチャム</value>
   </data>
   <data name="BatteryLevel_Low" xml:space="preserve">
-    <value>Düşük</value>
+    <value>低い</value>
   </data>
   <data name="BatteryLevel_Medium" xml:space="preserve">
-    <value>Yarı dolu</value>
+    <value>中間</value>
   </data>
   <data name="ControllerIndex_Four" xml:space="preserve">
-    <value>Dört</value>
+    <value>四</value>
   </data>
   <data name="ControllerIndex_One" xml:space="preserve">
-    <value>Bir</value>
+    <value>一</value>
   </data>
   <data name="ControllerIndex_Three" xml:space="preserve">
-    <value>Üç</value>
+    <value>三</value>
   </data>
   <data name="ControllerIndex_Two" xml:space="preserve">
-    <value>İki</value>
+    <value>二</value>
   </data>
   <data name="ContextMenu_Language" xml:space="preserve">
-    <value>Dil</value>
+    <value>言語</value>
   </data>
   <data name="ContextMenu_LowBatteryWarningSound" xml:space="preserve">
-    <value>Boş batarya uyarı sesi</value>
+    <value>バッテリー放電警告音</value>
   </data>
   <data name="ContextMenu_LowBatteryWarningSound_Enabled" xml:space="preserve">
-    <value>Açık</value>
+    <value>活性化</value>
   </data>
   <data name="ContextMenu_LowBatteryWarningSound_Loop_Enabled" xml:space="preserve">
-    <value>Uyarı sesini döngüye al</value>
-  </data>
-  <data name="Popup_ControllerName" xml:space="preserve">
-    <value>({0})</value>
-  </data>
-  <data name="Popup_BatteryLevel" xml:space="preserve">
-    <value>Batarya oranı: {0}</value>
+    <value>ループ反復</value>
   </data>
 </root>
