@@ -61,6 +61,15 @@ namespace XB1ControllerBatteryIndicator.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to About.
+        /// </summary>
+        public static string About_Group {
+            get {
+                return ResourceManager.GetString("About_Group", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Empty.
         /// </summary>
         public static string BatteryLevel_Empty {

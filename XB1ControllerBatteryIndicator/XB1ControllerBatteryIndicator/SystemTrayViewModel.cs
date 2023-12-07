@@ -30,6 +30,7 @@ namespace XB1ControllerBatteryIndicator
 		private string _activeIcon;
 		private Controller _controller;
 		private string _tooltipText;
+		private string _appName;
 		private const string APP_ID = "NiyaShy.XB1ControllerBatteryIndicator";
 		private bool[] toast_shown = new bool[5];
 		private Dictionary<string, int> numdict = new Dictionary<string, int>();
@@ -63,6 +64,9 @@ namespace XB1ControllerBatteryIndicator
 			numdict["Two"] = 2;
 			numdict["Three"] = 3;
 			numdict["Four"] = 4;
+
+			AppName = typeof(SystemTrayView).Assembly.GetName().Name + " v" + typeof(SystemTrayView).Assembly.GetName().Version.ToString();
+			
 			TryCreateShortcut();
 			Thread th = new Thread(RefreshControllerState);
 			th.IsBackground = true;
@@ -85,6 +89,12 @@ namespace XB1ControllerBatteryIndicator
 		{
 			get { return _tooltipText; }
 			set { Set(ref _tooltipText, value); }
+		}
+
+		public string AppName
+		{
+			get { return _appName; }
+			set { Set(ref _appName, value); }
 		}
 
 		public ObservableCollection<CultureInfo> AvailableLanguages { get; } = new ObservableCollection<CultureInfo>();

@@ -303,4 +303,7 @@
   <data name="ContextMenu_Notifications" xml:space="preserve">
     <value>Notifications</value>
   </data>
+  <data name="About_Group" xml:space="preserve">
+    <value>About</value>
+  </data>
 </root>

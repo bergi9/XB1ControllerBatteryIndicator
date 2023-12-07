@@ -19,7 +19,7 @@ namespace XB1ControllerBatteryIndicator
     /// </summary>
     public partial class SystemTrayView : Window
     {
-	    private SystemTrayViewModel ViewModel => DataContext as SystemTrayViewModel;
+        private SystemTrayViewModel ViewModel => DataContext as SystemTrayViewModel;
 
         public SystemTrayView()
         {

@@ -63,6 +63,11 @@
                 </MenuItem>
             </MenuItem>
             <Separator/>
+            <MenuItem Header="{my:Localization About_Group}" IsCheckable="False" DisplayMemberPath="DisplayName">
+                <MenuItem x:Name="AppName" Header="{Binding Path=AppName, Mode=OneWay}" IsCheckable="False" IsEnabled="False"/>
+                <!--MenuItem x:Name="AppVersion" Header="{Binding Path=AppVersion, Mode=OneWay}" IsCheckable="False" /-->
+            </MenuItem>
+            <Separator/>
             <MenuItem Header="{my:Localization ContextMenu_Exit}" cal:Message.Attach="ExitApplication" />
         </ContextMenu>
 
