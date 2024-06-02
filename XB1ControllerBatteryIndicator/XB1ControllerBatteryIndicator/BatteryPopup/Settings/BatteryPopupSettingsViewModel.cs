@@ -79,7 +79,7 @@ namespace XB1ControllerBatteryIndicator.BatteryPopup.Settings
 
 			Properties.Settings.Default.Save();
 
-			TryClose(true);
+            TryClose(true);
 		}
 
 		public void Cancel()

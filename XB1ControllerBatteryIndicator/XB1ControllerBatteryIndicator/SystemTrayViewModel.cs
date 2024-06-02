@@ -28,12 +28,12 @@ namespace XB1ControllerBatteryIndicator
 	public class SystemTrayViewModel : Caliburn.Micro.Screen
 	{
 		private string _activeIcon;
-		private Controller _controller;
+		// private Controller _controller;
 		private string _tooltipText;
 		private string _appName;
 		private const string APP_ID = "NiyaShy.XB1ControllerBatteryIndicator";
-		private bool[] toast_shown = new bool[5];
-		private Dictionary<string, int> numdict = new Dictionary<string, int>();
+		private readonly bool[] toast_shown = new bool[5];
+		private readonly Dictionary<string, int> numdict = new Dictionary<string, int>();
 		private const string ThemeRegKeyPath = @"Software\Microsoft\Windows\CurrentVersion\Themes\Personalize";
 		private const string ThemeRegValueName = "SystemUsesLightTheme";
 
@@ -68,14 +68,18 @@ namespace XB1ControllerBatteryIndicator
 			AppName = typeof(SystemTrayView).Assembly.GetName().Name + " v" + typeof(SystemTrayView).Assembly.GetName().Version.ToString();
 			
 			TryCreateShortcut();
-			Thread th = new Thread(RefreshControllerState);
-			th.IsBackground = true;
-			th.Start();
+            Thread th = new Thread(RefreshControllerState)
+            {
+                IsBackground = true
+            };
+            th.Start();
 
-			var timer = new System.Timers.Timer();
-			timer.AutoReset = true;
-			timer.Interval = 50;
-			timer.Elapsed += (sender, args) => PollGuideButton();
+            var timer = new System.Timers.Timer
+            {
+                AutoReset = true,
+                Interval = 50
+            };
+            timer.Elapsed += (sender, args) => PollGuideButton();
 			timer.Start();
 		}
 
@@ -308,15 +312,14 @@ namespace XB1ControllerBatteryIndicator
 		private void ToastActivated(ToastNotification sender, object e)
 		{
 			var toastArgs = e as ToastActivatedEventArgs;
-			int controllerId = 0;
-			//if the return value contains a controller ID
-			if (Int32.TryParse(toastArgs.Arguments, out controllerId))
-			{
-				//reset the toast warning (it will trigger again if battery level is still empty)
-				toast_shown[controllerId] = false;
-			}
-			//otherwise, do nothing
-		}
+            //if the return value contains a controller ID
+            if (Int32.TryParse(toastArgs.Arguments, out int controllerId))
+            {
+                //reset the toast warning (it will trigger again if battery level is still empty)
+                toast_shown[controllerId] = false;
+            }
+            //otherwise, do nothing
+        }
 		private void ToastDismissed(ToastNotification sender, object e)
 		{
 			//do nothing

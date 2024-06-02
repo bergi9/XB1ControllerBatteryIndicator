@@ -7,10 +7,7 @@ namespace XB1ControllerBatteryIndicator
 {
     internal class Bootstrapper : AutofacBootstrapper<SystemTrayViewModel>
     {
-        public Bootstrapper()
-        {
-            Initialize();
-        }
+        public Bootstrapper() => Initialize();
 
         protected override void ConfigureContainer(ContainerBuilder builder)
         {
