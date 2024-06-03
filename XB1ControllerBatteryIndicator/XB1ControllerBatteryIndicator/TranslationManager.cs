@@ -49,8 +49,14 @@ namespace XB1ControllerBatteryIndicator
                 if (Equals(CultureInfo.DefaultThreadCurrentUICulture, value))
                     return;
 
+                CultureInfo.CurrentCulture = value;
+                CultureInfo.CurrentUICulture = value;
+
                 CultureInfo.DefaultThreadCurrentCulture = value;
                 CultureInfo.DefaultThreadCurrentUICulture = value;
+
+                CultureInfo.CurrentCulture?.ClearCachedData();
+                CultureInfo.CurrentUICulture?.ClearCachedData();
 
                 CultureInfo.DefaultThreadCurrentCulture?.ClearCachedData();
                 CultureInfo.DefaultThreadCurrentUICulture?.ClearCachedData();
