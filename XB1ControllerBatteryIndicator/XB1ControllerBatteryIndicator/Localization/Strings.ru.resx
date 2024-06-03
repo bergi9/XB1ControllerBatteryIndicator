@@ -288,4 +288,10 @@
   <data name="NewMinorVersionAvailable_Body" xml:space="preserve">
     <value>Доступно новое незначительное обновление (добавление языков) {0}. Перейти на домашнюю страницу?</value>
   </data>
+  <data name="ContextMenu_Notifications" xml:space="preserve">
+    <value>Уведомления</value>
+  </data>
+  <data name="About_Group" xml:space="preserve">
+    <value>О программе</value>
+  </data>
 </root>

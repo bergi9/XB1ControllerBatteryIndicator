@@ -56,7 +56,11 @@ namespace XB1ControllerBatteryIndicator
 		public SystemTrayViewModel()
 		{
 			GetAvailableLanguages();
-			TranslationManager.CurrentLanguageChangedEvent += (sender, args) => GetAvailableLanguages();
+			TranslationManager.CurrentLanguageChangedEvent += (sender, args) =>
+			{
+				Strings.Culture = TranslationManager.CurrentLanguage;
+				GetAvailableLanguages();
+			};
 			UpdateNotificationSound();
 
 			ActiveIcon = $"Resources/battery_unknown{LightTheme()}.ico";

@@ -12,6 +12,6 @@ namespace XB1ControllerBatteryIndicator
             TranslationManager.CurrentLanguageChangedEvent += (sender, args) => NotifyOfPropertyChange(string.Empty);
         }
 
-        public string this[string key] => Strings.ResourceManager.GetString(key);
+        public string this[string key] => Strings.ResourceManager.GetString(key, Strings.Culture);
     }
 }
