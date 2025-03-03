@@ -136,7 +136,7 @@
     <value>컨트롤러가 감지되지 않음</value>
   </data>
   <data name="ToolTip_WaitingForData" xml:space="preserve">
-    <value>컨트롤러 {0} - 발견되었으나 배터리 정보 대기중...</value>
+    <value>컨트롤러 {0} - 발견되었습니다. 배터리 정보를 불러오는중입니다...</value>
   </data>
   <data name="ToolTip_Unknown" xml:space="preserve">
     <value>컨트롤러 {0} - 불명</value>
@@ -145,7 +145,7 @@
     <value>컨트롤러 {0} - 유선</value>
   </data>
   <data name="ToolTip_Wireless" xml:space="preserve">
-    <value>컨트롤러 {0} - 배터리 수준: {1}</value>
+    <value>컨트롤러 {0} - 잔량 배터리: {1}</value>
   </data>
   <data name="Toast_Title" xml:space="preserve">
     <value>컨트롤러 {0} 배터리 부족 경고</value>
@@ -169,19 +169,19 @@
     <value>낮음</value>
   </data>
   <data name="BatteryLevel_Medium" xml:space="preserve">
-    <value>중간</value>
+    <value>보통</value>
   </data>
   <data name="ControllerIndex_Four" xml:space="preserve">
-    <value>넷</value>
+    <value>네번째</value>
   </data>
   <data name="ControllerIndex_One" xml:space="preserve">
-    <value>하나</value>
+    <value>첫번째</value>
   </data>
   <data name="ControllerIndex_Three" xml:space="preserve">
-    <value>셋</value>
+    <value>세번째</value>
   </data>
   <data name="ControllerIndex_Two" xml:space="preserve">
-    <value>둘</value>
+    <value>두번째</value>
   </data>
   <data name="ContextMenu_Language" xml:space="preserve">
     <value>언어</value>
@@ -190,9 +190,9 @@
     <value>배터리 방전 경고음</value>
   </data>
   <data name="ContextMenu_LowBatteryWarningSound_Enabled" xml:space="preserve">
-    <value>활성화됨</value>
+    <value>활성화</value>
   </data>
   <data name="ContextMenu_LowBatteryWarningSound_Loop_Enabled" xml:space="preserve">
-    <value>루프 반복</value>
+    <value>반복 재생</value>
   </data>
 </root>
